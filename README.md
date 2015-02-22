@@ -1,2 +1,2 @@
 # CEWSP-v2
-New, redesigned version of CRYENGINE
+New, redesigned version of CEWSP
