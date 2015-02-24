@@ -70,7 +70,7 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to initialize the application backend.
+        ///   Looks up a localized string similar to Failed to initialize the application backend. See log for details..
         /// </summary>
         internal static string MsgFailedToInitBackend {
             get {
@@ -84,6 +84,24 @@ namespace CEWSP_v2.Properties {
         internal static string MsgFailedToInitLog {
             get {
                 return ResourceManager.GetString("MsgFailedToInitLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project that was active when the application was closed..
+        /// </summary>
+        internal static string SetDescLastUsedProject {
+            get {
+                return ResourceManager.GetString("SetDescLastUsedProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last active project.
+        /// </summary>
+        internal static string SetHumLastUsedProject {
+            get {
+                return ResourceManager.GetString("SetHumLastUsedProject", resourceCulture);
             }
         }
     }

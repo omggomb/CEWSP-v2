@@ -121,9 +121,15 @@
     <value>Error</value>
   </data>
   <data name="MsgFailedToInitBackend" xml:space="preserve">
-    <value>Failed to initialize the application backend</value>
+    <value>Failed to initialize the application backend. See log for details.</value>
   </data>
   <data name="MsgFailedToInitLog" xml:space="preserve">
     <value>Failed to initialize the application log.</value>
+  </data>
+  <data name="SetDescLastUsedProject" xml:space="preserve">
+    <value>The project that was active when the application was closed.</value>
+  </data>
+  <data name="SetHumLastUsedProject" xml:space="preserve">
+    <value>Last active project</value>
   </data>
 </root>

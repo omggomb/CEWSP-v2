@@ -27,12 +27,20 @@ namespace CEWSP_v2
         {
             InitializeComponent();
 
+            InitLog();
+
+            InitBackend();
+        }
+
+        private void InitLog()
+        {
             if (!Backend.Log.Init(logTextBlock))
             {
                 MessageBox.Show(Properties.Resources.MsgFailedToInitLog, Properties.Resources.CommonError,
                                  MessageBoxButton.OK, MessageBoxImage.Error);
                 Close();
             }
+
 
             // Hack because using a rich text box is not reliable as it relies on haivng focus
             // for the ScrollToEnd function to work.
@@ -43,7 +51,14 @@ namespace CEWSP_v2
                 logScrollViewer.ScrollToBottom();
             };
 
+            Backend.Log.LogInfo("Log successfully initialized.");
+        }
+
+        private void InitBackend()
+        {
             ApplicationBackend = new Backend.Backend();
+
+            Backend.Log.LogInfo("Initializing backend...");
 
             if (!ApplicationBackend.Init())
             {
@@ -51,8 +66,7 @@ namespace CEWSP_v2
                                  MessageBoxButton.OK, MessageBoxImage.Error);
                 Close();
             }
-
-           
+            Backend.Log.LogInfo("Backend successfully initialized.");
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
+using CEWSP_v2.Definitions;
+
 namespace CEWSP_v2.Backend
 {
     /// <summary>
@@ -15,7 +17,7 @@ namespace CEWSP_v2.Backend
         /// <summary>
         /// An instance of OmgUtils.Logging.Logger
         /// </summary>
-        private static OmgUtils.Logging.Logger ApplicationLog { get; set; }
+        public static OmgUtils.Logging.Logger ApplicationLog { get; private set; }
 
         
         public delegate void OnMessageLoggedDelegate();
@@ -34,10 +36,10 @@ namespace CEWSP_v2.Backend
         {
             ApplicationLog = new OmgUtils.Logging.Logger();
 
-            if (!ApplicationLog.Init(ConstantDefintitions.FullLogFilePath, tb))
+            if (!ApplicationLog.Init(ConstantDefintitions.RelativeLogFilePath, tb))
                 return false;
 
-            ApplicationLog.LogInfo("Log successfully initialized...");
+           
             return true;
         }
 
