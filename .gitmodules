@@ -1,0 +1,3 @@
+[submodule "CEWSP-v2/OmgUtils"]
+	path = CEWSP-v2/OmgUtils
+	url = https://github.com/omggomb/OmgUtils.git
