@@ -22,6 +22,11 @@ namespace CEWSP_v2.Definitions
         /// </summary>
         public const string RelativeGlobalSettingsPath = ".\\Settings\\global.xml";
 
+        /// <summary>
+        /// Path to the folder containing all the saved project folders
+        /// </summary>
+        public const string RelativeProjectsPath = ".\\Settings\\Projects\\";
+
        
 
         /// <summary>

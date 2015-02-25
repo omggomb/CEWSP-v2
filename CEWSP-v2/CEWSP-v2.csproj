@@ -57,6 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Dialogs\CreateNewProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,6 +72,9 @@
     <Compile Include="Backend\Backend.cs" />
     <Compile Include="Backend\ConstantDefs.cs" />
     <Compile Include="Backend\Log.cs" />
+    <Compile Include="Dialogs\CreateNewProject.xaml.cs">
+      <DependentUpon>CreateNewProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

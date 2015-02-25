@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
+using System.Windows;
 using CEWSP_v2.Definitions;
 
 namespace CEWSP_v2.Backend
@@ -80,6 +81,23 @@ namespace CEWSP_v2.Backend
         public static void LogError(string sMessage)
         {
             LogMessage(sMessage, OmgUtils.Logging.DefaultSeverityLevels.SL_Error);
+        }
+
+        /// <summary>
+        /// Displays a message box, telling the user that a feature has not been implemented yet.
+        /// Logs the same message to the application log.
+        /// Appends sMessage to the end of the text.
+        /// </summary>
+        /// <param name="sMessage"></param>
+        public static void NotifyNotImplemented(string sMessage)
+        {
+            string sFinalMessage = Properties.Resources.MsgFeatureNotImplemented + "\n" +
+                Properties.Resources.MsgAdditionalInfo + ": " + sMessage;
+
+            Log.LogWarning("User requested a missing feature: " + sMessage);
+
+            MessageBox.Show(sFinalMessage, Properties.Resources.CommonWarning,
+                             MessageBoxButton.OK, MessageBoxImage.Warning);  
         }
     }
 }

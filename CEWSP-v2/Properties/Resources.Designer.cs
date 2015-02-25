@@ -70,6 +70,24 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string CommonWarning {
+            get {
+                return ResourceManager.GetString("CommonWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional information.
+        /// </summary>
+        internal static string MsgAdditionalInfo {
+            get {
+                return ResourceManager.GetString("MsgAdditionalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to initialize the application backend. See log for details..
         /// </summary>
         internal static string MsgFailedToInitBackend {
@@ -84,6 +102,15 @@ namespace CEWSP_v2.Properties {
         internal static string MsgFailedToInitLog {
             get {
                 return ResourceManager.GetString("MsgFailedToInitLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This feature is not yet implemented..
+        /// </summary>
+        internal static string MsgFeatureNotImplemented {
+            get {
+                return ResourceManager.GetString("MsgFeatureNotImplemented", resourceCulture);
             }
         }
         

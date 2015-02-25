@@ -120,11 +120,20 @@
   <data name="CommonError" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="CommonWarning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="MsgAdditionalInfo" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
   <data name="MsgFailedToInitBackend" xml:space="preserve">
     <value>Failed to initialize the application backend. See log for details.</value>
   </data>
   <data name="MsgFailedToInitLog" xml:space="preserve">
     <value>Failed to initialize the application log.</value>
+  </data>
+  <data name="MsgFeatureNotImplemented" xml:space="preserve">
+    <value>This feature is not yet implemented.</value>
   </data>
   <data name="SetDescLastUsedProject" xml:space="preserve">
     <value>The project that was active when the application was closed.</value>
