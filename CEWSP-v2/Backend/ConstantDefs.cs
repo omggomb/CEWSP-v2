@@ -27,7 +27,8 @@ namespace CEWSP_v2.Definitions
         /// </summary>
         public const string RelativeProjectsPath = ".\\Settings\\Projects\\";
 
-       
+
+        public const string RelativeLightBulbImagePath = ".\\images\\lightbulb_.bmp";
 
         /// <summary>
         /// String value if no value is defined
@@ -44,6 +45,11 @@ namespace CEWSP_v2.Definitions
         /// Name of category "Projects" inside the global settings
         /// </summary>
         public const string GlobalSettingsCategoryProjects = "Projects";
+
+        /// <summary>
+        /// Name of category "Startup" inside the global settings
+        /// </summary>
+        public const string GlobalSettingsCategoryStartup = "Startup";
     }
 
     /// <summary>
@@ -56,5 +62,11 @@ namespace CEWSP_v2.Definitions
         /// Project that was last active before application was closed
         /// </summary>
         public const string SetLastUsedProject = "lastUsedProject";
+
+        /// <summary>
+        /// Should the welcome window be shown on startup? If false,
+        /// last used project will be loaded at startup.
+        /// </summary>
+        public const string SetShowWelcomeWindow = "showWelcomeWindow";
     }
 }

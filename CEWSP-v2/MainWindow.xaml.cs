@@ -13,6 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using CEWSP_v2.Backend;
+using CEWSP_v2.Definitions;
+
+using OmgUtils.ApplicationSettingsManagement;
+
 
 namespace CEWSP_v2
 {
@@ -30,6 +35,8 @@ namespace CEWSP_v2
             InitLog();
 
             InitBackend();
+
+            InitWindow();
         }
 
         private void InitLog()
@@ -72,6 +79,21 @@ namespace CEWSP_v2
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Backend.Log.LogInfo("Application closing down...");
+        }
+
+        void InitWindow()
+        {
+            var shouldShowWelcomeWindow = ApplicationBackend.GlobalSettings.GetSetting(SettingsIdentificationNames.SetShowWelcomeWindow) as BoolSetting;
+
+            if (ApplicationBackend.FoundProjectsNames.Count == 0 ||
+                shouldShowWelcomeWindow.Value == true)
+            {
+                var win = new Dialogs.Welcome(ApplicationBackend);
+                var res = win.ShowDialog();
+
+                if (res == false)
+                    Close();
+            }
         }
     }
 }

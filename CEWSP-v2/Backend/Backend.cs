@@ -27,6 +27,11 @@ namespace CEWSP_v2.Backend
 
         public List<string> FoundProjectsNames { get; private set; }
 
+        public Backend ()
+        {
+            FoundProjectsNames = new List<string>();
+        }
+
         /// <summary>
         /// Loads the last known profile, profile history, creates a logging instance.
         /// If this fails, the application will not work and should shut down.
@@ -44,11 +49,8 @@ namespace CEWSP_v2.Backend
 
             Log.LogInfo("Successfully loaded global settings.");
 
-            if (!LoadProjects())
-            {
-                Log.LogError("Failed to load projects!");
-                return false;
-            }
+            // No way to fail, if there are no projects a new one will have to be created
+            LoadProjects();
 
             Log.LogInfo("Successfully loaded profiles.");
 
@@ -86,13 +88,24 @@ namespace CEWSP_v2.Backend
 
         void FactoryResetGlobalSettings()
         {
+            // Last active project
             GlobalSettings.AddSetting(new StringSetting()
             {
                 IdentificationName = SettingsIdentificationNames.SetLastUsedProject,
                 Category = SettingsCategoryNames.GlobalSettingsCategoryProjects,
-                Description = Properties.Resources.SetDescLastUsedProject,
-                HumanReadableName = Properties.Resources.SetHumLastUsedProject,
+                Description = Properties.SettingsDesc.DescLastUsedProject,
+                HumanReadableName = Properties.SettingsDesc.HumLastUsedProject,
                 Value = ConstantDefintitions.CommonValueNone
+            });
+
+            // Show welcome window
+            GlobalSettings.AddSetting(new BoolSetting()
+            {
+                IdentificationName = SettingsIdentificationNames.SetShowWelcomeWindow,
+                Category = SettingsCategoryNames.GlobalSettingsCategoryStartup,
+                Description = Properties.SettingsDesc.DescShowWelcomeWindow,
+                HumanReadableName = Properties.SettingsDesc.HumShowWelcomeWindow,
+                Value = true
             });
         }
 
@@ -100,7 +113,7 @@ namespace CEWSP_v2.Backend
         /// Loads all saved projects
         /// </summary>
         /// <returns></returns>
-        private bool LoadProjects()
+        private void LoadProjects()
         {
             var dirInf = new DirectoryInfo(ConstantDefintitions.RelativeProjectsPath);
 
@@ -108,23 +121,19 @@ namespace CEWSP_v2.Backend
             // If dir doesn't exist, a new project has to be created
             if (!dirInf.Exists)
             {
-                Log.LogWarning("No projects found, asking user to create one...");
-                dirInf = Directory.CreateDirectory(ConstantDefintitions.RelativeProjectsPath);
-
-                return ShowNewProjectDialog();
+                Log.LogWarning("No projects found.");    
+                return;
             }
 
             var subDirs = dirInf.GetDirectories();
 
-            // If there are no projects, create a new one
+            
             if (subDirs.Length == 0)
             {
-                Log.LogWarning("No projects found, asking user to create one...");
+                Log.LogWarning("No projects found.");
 
-                return ShowNewProjectDialog();
+                return;
             }
-
-            FoundProjectsNames = new List<string>();
 
             // Now load all the project's names into a list so they can be accessed if needed
             foreach (var dir in subDirs)
@@ -132,19 +141,6 @@ namespace CEWSP_v2.Backend
                 FoundProjectsNames.Add(dir.Name);
                 Log.LogInfo("Found project with name: " + dir.Name);
             }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Displays a modal dialog for creating a new project
-        /// </summary>
-        /// <returns></returns>
-        private bool ShowNewProjectDialog()
-        {
-            var dia = new Dialogs.CreateNewProject();
-            dia.ShowDialog();
-            return true;
         }
     }
 }
