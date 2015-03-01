@@ -37,7 +37,7 @@ namespace CEWSP_v2.Backend
         {
             ApplicationLog = new OmgUtils.Logging.Logger();
 
-            if (!ApplicationLog.Init(ConstantDefintitions.RelativeLogFilePath, tb))
+            if (!ApplicationLog.Init(ConstantDefinitions.RelativeLogFilePath, tb))
                 return false;
 
            

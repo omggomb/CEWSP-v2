@@ -26,9 +26,9 @@ namespace CEWSP_v2.Backend
 
             var topStack = new StackPanel() { Orientation = Orientation.Vertical };
 
-            var mainMessage = new TextBlock() { Text = sMainMessage};
+            var mainMessage = new TextBlock() { Text = sMainMessage };
 
-          
+
             topStack.Children.Add(mainMessage);
 
             if (asSubMessages.Count() > 0)
@@ -39,14 +39,22 @@ namespace CEWSP_v2.Backend
                 {
                     var subStack = new StackPanel() { Orientation = Orientation.Horizontal };
 
-                   
-                    subStack.Children.Add(new TextBlock() { Text = subMessage });
+                    var bit = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Images/info-icon-64.png", UriKind.Relative));
+                    var img = new Image()
+                    {
+                        Source = bit,
+                        Width = 20,
+                        Height = 20
+                    };
+
+                    subStack.Children.Add(img);
+                    subStack.Children.Add(new TextBlock() { Text = subMessage, VerticalAlignment = System.Windows.VerticalAlignment.Center });
 
                     topStack.Children.Add(subStack);
                 }
             }
 
-          
+
             tip.Content = topStack;
 
             return tip;

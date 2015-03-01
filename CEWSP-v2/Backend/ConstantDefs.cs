@@ -9,7 +9,7 @@ namespace CEWSP_v2.Definitions
     /// <summary>
     /// This class only defines constants of all sorts
     /// </summary>
-    public class ConstantDefintitions
+    public class ConstantDefinitions
     {
         /// <summary>
         /// Relative path to the application log file

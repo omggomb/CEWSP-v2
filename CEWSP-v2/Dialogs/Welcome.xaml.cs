@@ -29,16 +29,27 @@ namespace CEWSP_v2.Dialogs
         /// </summary>
         bool m_bExitButtonPressed;
 
+        string m_sProjectToBeLoaded;
+
         public Welcome()
         {
             InitializeComponent();
 
             m_bExitButtonPressed = false;
+            m_sProjectToBeLoaded = ConstantDefinitions.CommonValueNone;
 
             CreateToolTips();
 
             FillProjects();
         }
+
+        public static string ShowAndReturn()
+        {
+            var dia = new Welcome();
+            dia.ShowDialog();
+            return dia.m_sProjectToBeLoaded;
+        }
+
 
         /// <summary>
         /// Since we want enhanced tool tips, we need to create them through code
@@ -171,10 +182,7 @@ namespace CEWSP_v2.Dialogs
         {
             m_bExitButtonPressed = true;
 
-            Close();
-            var dia = new CreateNewProject();
-
-            dia.ShowDialog();
+            m_sProjectToBeLoaded = CreateNewProject.ShowAndReturn();
         }
 
         private void clearFilterButton_Click(object sender, RoutedEventArgs e)
@@ -208,8 +216,9 @@ namespace CEWSP_v2.Dialogs
             if (e.LeftButton == MouseButtonState.Pressed)
                 filterTextBox.SelectAll();
         }
-
+        
     
+
       
     }
 }

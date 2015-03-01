@@ -39,6 +39,9 @@ namespace CEWSP_v2
             InitWindow();
         }
 
+        /// <summary>
+        /// Initialize the application log
+        /// </summary>
         private void InitLog()
         {
             if (!Backend.Log.Init(logTextBlock))
@@ -61,6 +64,9 @@ namespace CEWSP_v2
             Backend.Log.LogInfo("Log successfully initialized.");
         }
 
+        /// <summary>
+        /// Init the application backend (loads projects, global settings)
+        /// </summary>
         private void InitBackend()
         {
            
@@ -81,18 +87,19 @@ namespace CEWSP_v2
             Backend.Log.LogInfo("Application closing down...");
         }
 
+        /// <summary>
+        /// Determine wich window to show, and load a project or close the application
+        /// </summary>
         void InitWindow()
         {
             var shouldShowWelcomeWindow = ApplicationBackend.GlobalSettings.GetSetting(SettingsIdentificationNames.SetShowWelcomeWindow) as BoolSetting;
 
+            string sProjectToBeLoaded = ConstantDefinitions.CommonValueNone;
+
             if (ApplicationBackend.FoundProjectsNames.Count == 0 ||
                 shouldShowWelcomeWindow.Value == true)
             {
-                var win = new Dialogs.Welcome();
-                var res = win.ShowDialog();
-
-                if (res == false)
-                    Close();
+                sProjectToBeLoaded = Dialogs.Welcome.ShowAndReturn();   
             }
         }
     }

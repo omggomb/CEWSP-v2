@@ -76,16 +76,16 @@ namespace CEWSP_v2.Backend
 
             // First, check if file exists
             // if not
-            if (!File.Exists(ConstantDefintitions.RelativeGlobalSettingsPath))
+            if (!File.Exists(ConstantDefinitions.RelativeGlobalSettingsPath))
             {
                 // Create and save
-                string sDirPath = OmgUtils.Path.PathUtils.GetFilePath(ConstantDefintitions.RelativeGlobalSettingsPath);
+                string sDirPath = OmgUtils.Path.PathUtils.GetFilePath(ConstantDefinitions.RelativeGlobalSettingsPath);
                 Directory.CreateDirectory(sDirPath);
-                return GlobalSettings.SaveSettings(ConstantDefintitions.RelativeGlobalSettingsPath);
+                return GlobalSettings.SaveSettings(ConstantDefinitions.RelativeGlobalSettingsPath);
             }
 
             // File exists...load
-            return GlobalSettings.LoadSettingsFromFile(ConstantDefintitions.RelativeGlobalSettingsPath);
+            return GlobalSettings.LoadSettingsFromFile(ConstantDefinitions.RelativeGlobalSettingsPath);
         }
 
         static void FactoryResetGlobalSettings()
@@ -97,7 +97,7 @@ namespace CEWSP_v2.Backend
                 Category = SettingsCategoryNames.GlobalSettingsCategoryProjects,
                 Description = Properties.SettingsDesc.DescLastUsedProject,
                 HumanReadableName = Properties.SettingsDesc.HumLastUsedProject,
-                Value = ConstantDefintitions.CommonValueNone
+                Value = ConstantDefinitions.CommonValueNone
             });
 
             // Show welcome window
@@ -117,7 +117,7 @@ namespace CEWSP_v2.Backend
         /// <returns></returns>
         private static void LoadProjects()
         {
-            var dirInf = new DirectoryInfo(ConstantDefintitions.RelativeProjectsPath);
+            var dirInf = new DirectoryInfo(ConstantDefinitions.RelativeProjectsPath);
 
             // TODO : Tell user he has to create a project ... startup page?
             // If dir doesn't exist, a new project has to be created
