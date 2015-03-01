@@ -21,17 +21,11 @@ namespace CEWSP_v2.Dialogs
     /// </summary>
     public partial class CreateNewProject : Window
     {
-        public static int MyProperty { get; set; }
-
         public CreateNewProject()
         {
             InitializeComponent();
 
             CreateToolTips();
-
-            ceRootTextBox.Width -= 35;
-            var b = new Rectangle() { Fill = Brushes.Aquamarine, Width = 30 };
-            ceRootStackPanel.Children.Insert(1, b);
         }
 
         private void CreateToolTips()

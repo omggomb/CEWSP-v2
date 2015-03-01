@@ -26,7 +26,7 @@ namespace CEWSP_v2
     /// </summary>
     public partial class MainWindow : Window
     {
-        Backend.Backend ApplicationBackend { get; set; }
+        
 
         public MainWindow()
         {
@@ -63,7 +63,7 @@ namespace CEWSP_v2
 
         private void InitBackend()
         {
-            ApplicationBackend = new Backend.Backend();
+           
 
             Backend.Log.LogInfo("Initializing backend...");
 
@@ -88,7 +88,7 @@ namespace CEWSP_v2
             if (ApplicationBackend.FoundProjectsNames.Count == 0 ||
                 shouldShowWelcomeWindow.Value == true)
             {
-                var win = new Dialogs.Welcome(ApplicationBackend);
+                var win = new Dialogs.Welcome();
                 var res = win.ShowDialog();
 
                 if (res == false)

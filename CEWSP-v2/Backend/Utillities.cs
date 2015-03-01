@@ -26,12 +26,14 @@ namespace CEWSP_v2.Backend
 
             var topStack = new StackPanel() { Orientation = Orientation.Vertical };
 
-            var mainMessage = new TextBlock() { Text = sMainMessage , FontWeight = System.Windows.FontWeights.Bold};
+            var mainMessage = new TextBlock() { Text = sMainMessage};
+
+          
             topStack.Children.Add(mainMessage);
 
             if (asSubMessages.Count() > 0)
             {
-
+                mainMessage.FontWeight = System.Windows.FontWeights.Bold;
 
                 foreach (var subMessage in asSubMessages)
                 {

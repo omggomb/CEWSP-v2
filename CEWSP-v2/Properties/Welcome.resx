@@ -126,11 +126,17 @@
   <data name="MsgCloseWelcomeWithoutProjects" xml:space="preserve">
     <value>It appears you want to close the welcome window while there are no projects to be loaded. CEWSP needs a project to work and thus will close without any projects to be loaded. Do you still wish to close the application?</value>
   </data>
+  <data name="MsgFilterProjects" xml:space="preserve">
+    <value>Filter projects</value>
+  </data>
   <data name="MsgNoProjectCreateNew" xml:space="preserve">
     <value>There were no existing projects found, please create a new one</value>
   </data>
   <data name="MsgWelcomeToCEWSP" xml:space="preserve">
     <value>Welcome to CEWSP. Please choose a project to load or create a new one.</value>
+  </data>
+  <data name="TipClearFilter" xml:space="preserve">
+    <value>Press to clear the filter text box</value>
   </data>
   <data name="TipCreate" xml:space="preserve">
     <value>Create a new project</value>
@@ -146,5 +152,8 @@
   </data>
   <data name="TipExit" xml:space="preserve">
     <value>Exits the application</value>
+  </data>
+  <data name="TipFilterProjects" xml:space="preserve">
+    <value>Type the name of the project you are looking for</value>
   </data>
 </root>

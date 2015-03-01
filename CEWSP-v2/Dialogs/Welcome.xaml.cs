@@ -22,33 +22,27 @@ namespace CEWSP_v2.Dialogs
     /// </summary>
     public partial class Welcome : Window
     {
-        /// <summary>
-        /// Used to fill out information in the list view and
-        /// to pass it on to the CreateNewProject dialog
-        /// </summary>
-        Backend.Backend ApplicationBackend { get; set; }
+        
 
         /// <summary>
         /// Set to true if the exit button was pressed and the application should shut down
         /// </summary>
         bool m_bExitButtonPressed;
 
-        public Welcome(Backend.Backend applicationBackend)
+        public Welcome()
         {
             InitializeComponent();
 
             m_bExitButtonPressed = false;
-
-            if (applicationBackend == null)
-                throw new ArgumentNullException("applicationBackend");
-
-            ApplicationBackend = applicationBackend;
 
             CreateToolTips();
 
             FillProjects();
         }
 
+        /// <summary>
+        /// Since we want enhanced tool tips, we need to create them through code
+        /// </summary>
         private void CreateToolTips()
         {
             // exit button
@@ -61,6 +55,12 @@ namespace CEWSP_v2.Dialogs
             // Checkbox
             showAgainCheckBox.ToolTip = Utillities.ConstructToolTip(Properties.Welcome.TipDontShowCheckBox,
                                                                     Properties.Welcome.TipDontShowCheckBoxNoProjects);
+
+            // Filter text box
+            filterTextBox.ToolTip = Utillities.ConstructToolTip(Properties.Welcome.TipFilterProjects);
+
+            // Clear filter button
+            clearFilterButton.ToolTip = Utillities.ConstructToolTip(Properties.Welcome.TipClearFilter);
         }
 
         /// <summary>
@@ -103,6 +103,8 @@ namespace CEWSP_v2.Dialogs
         void AddProjectToList(string sProjectName)
         {
             // TODO: AddProjectToList
+            var item = new ListBoxItem() { Content = sProjectName };
+            projectListBox.Items.Add(item);
         }
 
         /// <summary>
@@ -174,5 +176,40 @@ namespace CEWSP_v2.Dialogs
 
             dia.ShowDialog();
         }
+
+        private void clearFilterButton_Click(object sender, RoutedEventArgs e)
+        {
+            filterTextBox.Text = "";
+            FilterProjectList("");
+        }
+
+        private void FilterProjectList(string sFilter)
+        {
+            projectListBox.Items.Clear();
+
+            sFilter = sFilter.ToLower();
+
+            foreach (var name in ApplicationBackend.FoundProjectsNames)
+            {
+
+                string sNameToLower = name.ToLower();
+                if (sNameToLower.Contains(sFilter))
+                    AddProjectToList(name);
+            }
+        }
+
+        private void filterTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            FilterProjectList(filterTextBox.Text);
+        }
+
+        private void filterTextBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                filterTextBox.SelectAll();
+        }
+
+    
+      
     }
 }

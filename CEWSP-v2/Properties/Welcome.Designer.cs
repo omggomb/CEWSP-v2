@@ -88,6 +88,15 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter projects.
+        /// </summary>
+        public static string MsgFilterProjects {
+            get {
+                return ResourceManager.GetString("MsgFilterProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There were no existing projects found, please create a new one.
         /// </summary>
         public static string MsgNoProjectCreateNew {
@@ -102,6 +111,15 @@ namespace CEWSP_v2.Properties {
         public static string MsgWelcomeToCEWSP {
             get {
                 return ResourceManager.GetString("MsgWelcomeToCEWSP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press to clear the filter text box.
+        /// </summary>
+        public static string TipClearFilter {
+            get {
+                return ResourceManager.GetString("TipClearFilter", resourceCulture);
             }
         }
         
@@ -147,6 +165,15 @@ namespace CEWSP_v2.Properties {
         public static string TipExit {
             get {
                 return ResourceManager.GetString("TipExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type the name of the project you are looking for.
+        /// </summary>
+        public static string TipFilterProjects {
+            get {
+                return ResourceManager.GetString("TipFilterProjects", resourceCulture);
             }
         }
     }

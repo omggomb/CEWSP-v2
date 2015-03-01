@@ -18,16 +18,16 @@ namespace CEWSP_v2.Backend
     /// <summary>
     /// Takes care of all the logic
     /// </summary>
-    public class Backend
+    public  static class ApplicationBackend
     {
         /// <summary>
         /// Global settings that apply to the whole application
         /// </summary>
-        public SettingsManager GlobalSettings { get; private set; }
+        public static SettingsManager GlobalSettings { get; private set; }
 
-        public List<string> FoundProjectsNames { get; private set; }
+        public static List<string> FoundProjectsNames { get; private set; }
 
-        public Backend ()
+        static ApplicationBackend ()
         {
             FoundProjectsNames = new List<string>();
         }
@@ -37,7 +37,7 @@ namespace CEWSP_v2.Backend
         /// If this fails, the application will not work and should shut down.
         /// </summary>
         /// <returns>True on succes</returns>
-        public bool Init()
+        public static bool Init()
         {
             
 
@@ -54,6 +54,8 @@ namespace CEWSP_v2.Backend
 
             Log.LogInfo("Successfully loaded profiles.");
 
+            FoundProjectsNames.Add("fakeProject");
+
 
            
             return true;
@@ -65,7 +67,7 @@ namespace CEWSP_v2.Backend
         /// Loads the application level settings
         /// </summary>
         /// <returns>True on success</returns>
-        bool LoadGlobalSettings()
+        static bool LoadGlobalSettings()
         {
             Log.LogInfo("Loading global settings...");
             GlobalSettings = new SettingsManager(Log.ApplicationLog);
@@ -86,7 +88,7 @@ namespace CEWSP_v2.Backend
             return GlobalSettings.LoadSettingsFromFile(ConstantDefintitions.RelativeGlobalSettingsPath);
         }
 
-        void FactoryResetGlobalSettings()
+        static void FactoryResetGlobalSettings()
         {
             // Last active project
             GlobalSettings.AddSetting(new StringSetting()
@@ -113,7 +115,7 @@ namespace CEWSP_v2.Backend
         /// Loads all saved projects
         /// </summary>
         /// <returns></returns>
-        private void LoadProjects()
+        private static void LoadProjects()
         {
             var dirInf = new DirectoryInfo(ConstantDefintitions.RelativeProjectsPath);
 
