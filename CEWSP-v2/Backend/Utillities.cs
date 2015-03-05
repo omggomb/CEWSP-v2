@@ -5,14 +5,81 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 using CEWSP_v2.Definitions;
+using CEWSP_v2.Analytics;
 
 namespace CEWSP_v2.Backend
 {
     public class Utillities
     {
+        static BitmapImage m_errorBitmap;
+        static BitmapImage m_checkmarkBitmap;
+        static BitmapImage m_warningBitmap;
+        static BitmapImage m_infoBitmap;
+
+        public static int ToolTipIconWidth { get; set; } 
+ 
+        static Utillities()
+        {
+            ToolTipIconWidth = 20;
+        }
+
+
+        public static BitmapImage InfoBitmap
+        {
+            get
+            {
+                if (m_infoBitmap == null)
+                {
+                    m_infoBitmap = new BitmapImage(new Uri("/Images/info-icon-64.png", UriKind.Relative));
+                }
+
+                return m_infoBitmap;
+            }
+        }
+
+        public static BitmapImage ErrorBitmap
+        {
+            get
+            {
+                if (m_errorBitmap == null)
+                {
+                    m_errorBitmap = new BitmapImage(new Uri("/Images/error-icon-64.png", UriKind.Relative));
+                }
+
+                return m_errorBitmap;
+            }
+        }
+
+        public static BitmapImage WarningBitmap
+        {
+            get
+            {
+                if (m_warningBitmap == null)
+                {
+                    m_warningBitmap = new BitmapImage(new Uri("/Images/warning-icon-64.png", UriKind.Relative));
+                }
+
+                return m_warningBitmap;
+            }
+        }
+
+        public static BitmapImage CheckmarkBitmap
+        {
+            get
+            {
+                if (m_checkmarkBitmap == null)
+                {
+                    m_checkmarkBitmap = new BitmapImage(new Uri("/Images/checkmark-icon-64.png", UriKind.Relative));
+                }
+
+                return m_checkmarkBitmap;
+            }
+        }
         /// <summary>
         /// Constructs a tooltip with the main message at the top.
         /// Each submessage gets its own icon
@@ -39,12 +106,12 @@ namespace CEWSP_v2.Backend
                 {
                     var subStack = new StackPanel() { Orientation = Orientation.Horizontal };
 
-                    var bit = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Images/info-icon-64.png", UriKind.Relative));
+                  
                     var img = new Image()
                     {
-                        Source = bit,
-                        Width = 20,
-                        Height = 20
+                        Source = InfoBitmap,
+                        Width = ToolTipIconWidth,
+                        Height = ToolTipIconWidth
                     };
 
                     subStack.Children.Add(img);
@@ -56,6 +123,111 @@ namespace CEWSP_v2.Backend
 
 
             tip.Content = topStack;
+
+            return tip;
+        }
+
+        public static Popup CreateIssueToolTip(ReasonList reasons)
+        {
+            var tip = new Popup();
+            tip.Opened += delegate
+            {
+                tip.MouseLeave += delegate
+                {
+                    tip.IsOpen = false;
+                };
+            };
+    
+            var scrollViewer = new ScrollViewer() { MaxWidth = 400 };
+            tip.Child = scrollViewer;
+
+            var headerIconImage = new Image() { Width = ToolTipIconWidth, Height = ToolTipIconWidth };
+
+            var listView = new ListView();
+            scrollViewer.Content = listView;
+
+            var headerWrapPanel = new WrapPanel();
+            var headerTextBlock = new TextBlock()
+            {
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                FontWeight = System.Windows.FontWeights.Bold
+
+            };
+            headerTextBlock.FontSize *= 1.2;
+
+            headerWrapPanel.Children.Add(headerIconImage);
+            headerWrapPanel.Children.Add(headerTextBlock);
+
+            var headerItem = new ListViewItem();
+            headerItem.Content = headerWrapPanel;
+
+            listView.Items.Add(headerItem);
+
+            if (reasons.Count == 0)
+            {
+                headerIconImage.Source = CheckmarkBitmap;
+                headerTextBlock.Text = Properties.ValidationReasons.CommonEverythingGood;
+
+            }
+            else
+            {
+
+                if (reasons.ContainsError)
+                {
+                    headerIconImage.Source = ErrorBitmap;
+                }
+                else
+                    headerIconImage.Source = WarningBitmap;
+
+                headerTextBlock.Text = Properties.ValidationReasons.CommonThereAreIssues;
+
+                foreach (var reason in reasons)
+                {
+                    var reasonExpander = new Expander() { IsExpanded = false } ;
+
+                    var reasonStackPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                    var reasonImage = new Image() { Width = ToolTipIconWidth, Height = ToolTipIconWidth };
+
+                    if (reason.Severity == EReasonSeverity.eRS_error)
+                        reasonImage.Source = ErrorBitmap;
+                    else
+                        reasonImage.Source = WarningBitmap;
+
+                    var reasonTextBlock = new TextBlock
+                    {
+                        Text = reason.HumanReadableExplanation,
+                        VerticalAlignment = System.Windows.VerticalAlignment.Center
+                    };
+
+                    reasonStackPanel.Children.Add(reasonImage);
+                    reasonStackPanel.Children.Add(reasonTextBlock);
+
+                    reasonExpander.Header = reasonStackPanel;
+
+                    if (reason.HumanReadableSolutions.Count > 0)
+                    {
+                        var reasonSolutions = new ListView();
+                        reasonExpander.Content = reasonSolutions;
+
+                        foreach (var item in reason.HumanReadableSolutions)
+                        {
+                            var solStackPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+
+                            var solImage = new Image() { Width = ToolTipIconWidth, Height = ToolTipIconWidth, Source = InfoBitmap };
+                            var solText = new TextBlock() { Text = item, VerticalAlignment = System.Windows.VerticalAlignment.Center };
+
+                            solStackPanel.Children.Add(solImage);
+                            solStackPanel.Children.Add(solText);
+
+                            var solListItem = new ListViewItem() { Content = solStackPanel, IsEnabled = false };
+                            reasonSolutions.Items.Add(solListItem);
+                        } 
+                    }
+
+                    var reasonListItem = new ListViewItem() { Content = reasonExpander };
+                    listView.Items.Add(reasonListItem);
+                }
+            }
 
             return tip;
         }

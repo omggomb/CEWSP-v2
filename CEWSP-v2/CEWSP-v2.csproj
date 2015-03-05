@@ -58,6 +58,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Analytics\ValidationRules\BaseValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\CEPathValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\CERootPathValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\IValidationRule.cs" />
+    <Compile Include="Analytics\PredefinedReasons\PathContainsNonLatinCharactersReason.cs" />
+    <Compile Include="Analytics\PredefinedReasons\PathContainsSpacesReasong.cs" />
+    <Compile Include="Analytics\PredefinedReasons\PathNonExistentReason.cs" />
+    <Compile Include="Analytics\Reason.cs" />
+    <Compile Include="Analytics\ReasonList.cs" />
     <Compile Include="Backend\Utillities.cs" />
     <Compile Include="Properties\CreateNewProject.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -73,6 +82,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SettingsDesc.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\ValidationReasons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationReasons.resx</DependentUpon>
     </Compile>
     <Page Include="Dialogs\CreateNewProject.xaml">
       <SubType>Designer</SubType>
@@ -135,6 +149,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SettingsDesc.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ValidationReasons.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationReasons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
@@ -160,6 +178,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\info-icon-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\error-icon-64.png" />
+    <Resource Include="Images\warning-icon-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\checkmark-icon-64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

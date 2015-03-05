@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:CEWSP_v2.Properties"
-        Title="CreateNewProject" Height="700" Width="700" MaxWidth="700" WindowStartupLocation="CenterScreen" Closing="createProjectWindow_Closing">
+        Title="CreateNewProject" Height="700" Width="700" MaxWidth="700" WindowStartupLocation="CenterScreen" Closing="createProjectWindow_Closing"
+        Name="createProjectWindow" PreviewMouseDown="createProjectWindow_PreviewMouseDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="567*"/>
@@ -24,16 +25,17 @@
         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="0,97,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="23"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="12,147,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
         <ComboBox Margin="12,173,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="272" Height="22"/>
-        <WebBrowser Source="http://cryengine.com" Margin="12,235,10,51" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <WebBrowser Margin="12,235,10,51" Grid.Row="1" Grid.ColumnSpan="2"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="12,204,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
-        <Grid Height="23" Margin="12,36,10,0" Grid.Row="1" VerticalAlignment="Top">
+        <Grid Name="ceRootGrid" Height="23" Margin="12,36,10,0" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="423*"/>
-                <ColumnDefinition Name="ceRootIssueColumn" Width="0*"/>
+                <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="45*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding  ElementName=createProjectWindow, Path=CERoot}" VerticalAlignment="Top"/>
             <Button Content="x" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="36" Height="23"/>
+            <Image Name="ceRootIssuesImage" Grid.Column="1" MouseEnter="ceRootIssuesImage_MouseEnter" />
         </Grid>
         <Grid Height="23" Margin="12,97,10,0" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
