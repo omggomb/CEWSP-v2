@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LblCEGame" xml:space="preserve">
+    <value>Specify a game folder name</value>
+  </data>
+  <data name="LblCERoot" xml:space="preserve">
+    <value>Specify your CE installation directory</value>
+  </data>
   <data name="LblProjectName" xml:space="preserve">
     <value>Project name:</value>
   </data>
@@ -125,5 +131,8 @@
   </data>
   <data name="TipImageClickToBrowse" xml:space="preserve">
     <value>To change the image click on it.</value>
+  </data>
+  <data name="TipImageRightReset" xml:space="preserve">
+    <value>Rightclick and choose reset to reset the image to the default image</value>
   </data>
 </root>

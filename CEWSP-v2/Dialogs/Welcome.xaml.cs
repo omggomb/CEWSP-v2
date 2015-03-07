@@ -214,7 +214,12 @@ namespace CEWSP_v2.Dialogs
         private void filterTextBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
+            {
                 filterTextBox.SelectAll();
+                filterTextBox.Focus();
+                e.Handled = true;
+            }
+                
         }
         
     

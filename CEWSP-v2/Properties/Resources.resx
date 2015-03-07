@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnBrowse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
   <data name="BtnCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -128,6 +131,12 @@
   </data>
   <data name="CommonError" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="CommonImageFiles" xml:space="preserve">
+    <value>Image files</value>
+  </data>
+  <data name="CommonReset" xml:space="preserve">
+    <value>Reset</value>
   </data>
   <data name="CommonWarning" xml:space="preserve">
     <value>Warning</value>

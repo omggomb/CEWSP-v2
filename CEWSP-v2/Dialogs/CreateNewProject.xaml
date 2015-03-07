@@ -13,16 +13,21 @@
             <RowDefinition Height="97*"/>
             <RowDefinition Height="372*"/>
         </Grid.RowDefinitions>
-        <Button Margin="10,10,0,0" Name="browseImageButton" HorizontalAlignment="Left" Width="118" Height="118" VerticalAlignment="Top">
+        <Button Margin="10,10,0,0" Name="browseImageButton" HorizontalAlignment="Left" Width="118" Height="118" VerticalAlignment="Top" Click="browseImageButton_Click">
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="resetImageContextMenuItem" Header="{x:Static p:Resources.CommonReset}" Click="resetImageContextMenuItem_Click"/>
+                </ContextMenu>
+            </Button.ContextMenu>
             <Image x:Name="projectImage"  Source="/Images/default-project-image.png"/>
         </Button>
         <TextBox Name="projectNameTextBox" Margin="133,105,0,0" Text="{Binding ElementName=createProjectWindow, Path=ProjectName}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="179"/>
         <Label Content="{x:Static p:CreateNewProject.LblProjectName}" HorizontalAlignment="Left" Margin="133,74,0,0" VerticalAlignment="Top" Height="26" Width="82" />
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="0,36,0,0" Grid.Row="1" Width="75" Height="23" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="{x:Static p:CreateNewProject.LblCERoot}" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="Auto"/>
+        <Button Name="browseCERootButton" Content="{x:Static p:Resources.BtnBrowse}" HorizontalAlignment="Left" Margin="0,36,0,0" Grid.Row="1" Width="75" Height="23" VerticalAlignment="Top" Grid.Column="1" Click="browseCERootButton_Click"/>
 
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,71,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
-        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="0,97,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="23"/>
+        <Label Content="{x:Static p:CreateNewProject.LblCEGame}" HorizontalAlignment="Left" Margin="10,71,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="Auto"/>
+        <Button Content="{x:Static p:Resources.BtnBrowse}" Grid.Column="1" HorizontalAlignment="Left" Margin="0,97,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="23"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="12,147,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
         <ComboBox Margin="12,173,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="272" Height="22"/>
         <WebBrowser Margin="12,235,10,51" Grid.Row="1" Grid.ColumnSpan="2"/>

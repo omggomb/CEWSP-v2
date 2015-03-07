@@ -61,6 +61,24 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specify a game folder name.
+        /// </summary>
+        public static string LblCEGame {
+            get {
+                return ResourceManager.GetString("LblCEGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify your CE installation directory.
+        /// </summary>
+        public static string LblCERoot {
+            get {
+                return ResourceManager.GetString("LblCERoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project name:.
         /// </summary>
         public static string LblProjectName {
@@ -84,6 +102,15 @@ namespace CEWSP_v2.Properties {
         public static string TipImageClickToBrowse {
             get {
                 return ResourceManager.GetString("TipImageClickToBrowse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rightclick and choose reset to reset the image to the default image.
+        /// </summary>
+        public static string TipImageRightReset {
+            get {
+                return ResourceManager.GetString("TipImageRightReset", resourceCulture);
             }
         }
     }

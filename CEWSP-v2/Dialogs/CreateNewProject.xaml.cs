@@ -1,10 +1,14 @@
 ﻿using System.Windows;
 
 using System.Windows.Controls;
+using Microsoft.Win32;
 
 using CEWSP_v2.Backend;
 using CEWSP_v2.Analytics;
 using System.Windows.Controls.Primitives;
+using System.IO;
+using System.Windows.Media.Imaging;
+using System;
 
 namespace CEWSP_v2.Dialogs
 {
@@ -30,6 +34,7 @@ namespace CEWSP_v2.Dialogs
         string m_sCERoot;
         string m_sCEGame;
         string m_sProjectName;
+        string m_sProjectImagePath;
 
         public string CERoot
         {
@@ -89,6 +94,22 @@ namespace CEWSP_v2.Dialogs
             }
         }
 
+        public string ProjectImagePath
+        {
+            get
+            {
+                return m_sProjectImagePath;
+            }
+            set
+            {
+                if (File.Exists(value))
+                    m_sProjectImagePath = value;
+
+                UpdateProjectImageDisplay();
+            }
+        }
+
+        
         
 
 
@@ -107,17 +128,18 @@ namespace CEWSP_v2.Dialogs
             CERoot = @"E:\Dev\CRYENGINE\358";
             CEGame = "";
             ProjectName = "";
+            ResetProjectImage();
         }
 
         private void CreateToolTips()
         {
             browseImageButton.ToolTip = Utillities.ConstructToolTip(Properties.CreateNewProject.TipImage,
-                                                               Properties.CreateNewProject.TipImageClickToBrowse);
+                                                               Properties.CreateNewProject.TipImageClickToBrowse,
+                                                              Properties.CreateNewProject.TipImageRightReset);
         }
 
         private void createProjectWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
 
         }
 
@@ -258,6 +280,47 @@ namespace CEWSP_v2.Dialogs
         private void clearCERootButton_Click(object sender, RoutedEventArgs e)
         {
             CERoot = "";
+        }
+
+        private void browseImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dia = new OpenFileDialog()
+            {
+                AddExtension = true,
+                CheckFileExists = true,
+                DereferenceLinks = true,
+                ValidateNames = true,
+                Filter = Properties.Resources.CommonImageFiles + "|*bmp;*jpg;*png;*tiff;*ico;*gif;*wdp"
+            };
+
+            dia.FileOk += delegate
+            {
+                ProjectImagePath = dia.FileName;
+            };
+
+            dia.ShowDialog();
+        }
+
+        private void UpdateProjectImageDisplay()
+        {
+            var bit = new BitmapImage(new Uri(m_sProjectImagePath));
+            projectImage.Source = bit;
+        }
+
+        private void resetImageContextMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ResetProjectImage();
+        }
+
+        void ResetProjectImage()
+        {
+            m_sProjectImagePath = "/Images/default-project-image.png";
+            projectImage.Source = Utillities.DefaultProjectBitmap;
+        }
+
+        private void browseCERootButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

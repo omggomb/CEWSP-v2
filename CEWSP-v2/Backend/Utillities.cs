@@ -20,6 +20,7 @@ namespace CEWSP_v2.Backend
         static BitmapImage m_checkmarkBitmap;
         static BitmapImage m_warningBitmap;
         static BitmapImage m_infoBitmap;
+        static BitmapImage m_defaultProjectBitmap;
 
         public static int ToolTipIconWidth { get; set; }
 
@@ -78,6 +79,17 @@ namespace CEWSP_v2.Backend
                 }
 
                 return m_checkmarkBitmap;
+            }
+        }
+
+        public static BitmapImage DefaultProjectBitmap
+        {
+            get
+            {
+                if (m_defaultProjectBitmap == null)
+                    m_defaultProjectBitmap = new BitmapImage(new Uri("/Images/default-project-image.png", UriKind.Relative));
+
+                return m_defaultProjectBitmap;
             }
         }
         /// <summary>
