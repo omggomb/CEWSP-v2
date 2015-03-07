@@ -27,8 +27,7 @@ namespace CEWSP_v2.Definitions
         /// </summary>
         public const string RelativeProjectsPath = ".\\Settings\\Projects\\";
 
-
-        public const string RelativeLightBulbImagePath = ".\\images\\lightbulb_.bmp";
+        public const string RelativeGameTemplatesPath = ".\\GameTemplates\\";
 
         /// <summary>
         /// String value if no value is defined

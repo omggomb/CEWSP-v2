@@ -69,6 +69,7 @@
     <Compile Include="Analytics\Reason.cs" />
     <Compile Include="Analytics\ReasonList.cs" />
     <Compile Include="Analytics\ValidationRules\PorjectNameValidationRule.cs" />
+    <Compile Include="Backend\GameTemplate.cs" />
     <Compile Include="Backend\Utillities.cs" />
     <Compile Include="Properties\CreateNewProject.Designer.cs">
       <AutoGen>True</AutoGen>

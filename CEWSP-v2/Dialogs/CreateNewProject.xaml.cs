@@ -322,5 +322,10 @@ namespace CEWSP_v2.Dialogs
         {
             
         }
+
+        void ResetTemplateList()
+        {
+
+        }
     }
 }

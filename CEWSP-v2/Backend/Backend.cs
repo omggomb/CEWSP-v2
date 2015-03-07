@@ -144,5 +144,10 @@ namespace CEWSP_v2.Backend
                 Log.LogInfo("Found project with name: " + dir.Name);
             }
         }
+
+        static void LoadGameTemplates()
+        {
+            var dirInf = new DirectoryInfo(ConstantDefinitions.RelativeGameTemplatesPath);
+        }
     }
 }
