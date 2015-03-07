@@ -27,7 +27,19 @@ namespace CEWSP_v2.Analytics
         /// <summary>
         /// The supposed CE root path does not contain any of the expected folders (Bin32, Bin64, Code)
         /// </summary>
-        eR_PathIsMissingFolderToBeRoot
+        eR_PathIsMissingFolderToBeRoot,
+        /// <summary>
+        /// When checking the game folder the given root folder was invalid
+        /// </summary>
+        eR_CheckGameRootInvalid,
+        /// <summary>
+        /// The given name is a path, only a valid name is allowed
+        /// </summary>
+        eR_CheckGameNameIsPath,
+        eR_CheckGamePathNotExist,
+        eR_CheckGameNameEmpty,
+        eR_ProjectNameExists,
+        eR_ProjectNameEmpty
     }
 
     /// <summary>

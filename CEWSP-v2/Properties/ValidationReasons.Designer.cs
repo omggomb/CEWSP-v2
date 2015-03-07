@@ -61,6 +61,42 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot check game folder for validity as the CE root folder is not valid.
+        /// </summary>
+        public static string CEGameCannotCheckRootInvalid {
+            get {
+                return ResourceManager.GetString("CEGameCannotCheckRootInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify a name.
+        /// </summary>
+        public static string CEGameNameIsEmpty {
+            get {
+                return ResourceManager.GetString("CEGameNameIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified name seems to be a path, please only specify a name..
+        /// </summary>
+        public static string CEGameNameIsPath {
+            get {
+                return ResourceManager.GetString("CEGameNameIsPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified folder does not exist, it will be created.
+        /// </summary>
+        public static string CEGameNotExist {
+            get {
+                return ResourceManager.GetString("CEGameNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The specified path is missing at least one expected folder.
         /// </summary>
         public static string CERootIsMissingFolders {
@@ -115,11 +151,56 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please choose a unique name for this project.
+        /// </summary>
+        public static string ProjectNameEmpty {
+            get {
+                return ResourceManager.GetString("ProjectNameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The chosen project name already exists, please choose a different one..
+        /// </summary>
+        public static string ProjectNameExists {
+            get {
+                return ResourceManager.GetString("ProjectNameExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifiy a valid CE root installation folder.
+        /// </summary>
+        public static string SolCEGameCannotCheckRootInvalid {
+            get {
+                return ResourceManager.GetString("SolCEGameCannotCheckRootInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make sure you spelled the name correctly.
+        /// </summary>
+        public static string SolCEGameNotExist {
+            get {
+                return ResourceManager.GetString("SolCEGameNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please choose a valid CE installation directory..
         /// </summary>
         public static string SolCERootIsMissingFolders {
             get {
                 return ResourceManager.GetString("SolCERootIsMissingFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game folder must reside inside the CE root, so a name is enough.
+        /// </summary>
+        public static string SolGameNameIsPath {
+            get {
+                return ResourceManager.GetString("SolGameNameIsPath", resourceCulture);
             }
         }
         

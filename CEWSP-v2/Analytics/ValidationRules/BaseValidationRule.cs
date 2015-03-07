@@ -14,17 +14,24 @@ namespace CEWSP_v2.Analytics.ValidationRules
     {
         protected ReasonList m_reasons;
 
-        public virtual bool IsValid(object o, out ReasonList reasons)
+        public virtual bool IsValid(object o, ref ReasonList reasons, params object[] additionalArgs)
         {
-            reasons = new ReasonList();
+            if (o == null)
+                throw new ArgumentNullException("o");
+
+            if (reasons == null)
+                reasons = new ReasonList();
+
+            m_reasons = reasons;
+
             return true;
         }
 
-        public bool IsValid(object o)
+        public bool IsValid(object o, params object[] additionalArgs)
         {
-            ReasonList list;
+            ReasonList list = null;
 
-            return IsValid(o, out list);
+            return IsValid(o, ref list);
         }
 
         public ReasonList Reasons

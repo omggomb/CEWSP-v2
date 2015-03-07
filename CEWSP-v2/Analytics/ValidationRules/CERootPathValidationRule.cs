@@ -18,29 +18,33 @@ namespace CEWSP_v2.Analytics.ValidationRules
         {
             m_requiredFolders = new Dictionary<string, bool>();
 
-            m_requiredFolders.Add("Bin32", false);
-            m_requiredFolders.Add("Bin64", false);
-            m_requiredFolders.Add("Code", false);
+            ResetRquiredFolders();
+            
         }
 
-        public override bool IsValid(object o, out ReasonList reasons)
+        public override bool IsValid(object o, ref ReasonList reasons, params object[] additionalArgs)
         {
-            if (o == null)
-                throw new ArgumentNullException("o");
-
+            base.IsValid(o, ref reasons, additionalArgs);
+            
             if (!(o is string))
                 throw new ArgumentException("CERootPathValidationRule was called without using a string.");
+
+            
+
+            ResetRquiredFolders();
 
             m_sPathToCheck = o as string;
 
             var pathValidationRule = new CEPathValidationRule(true, true);
-            pathValidationRule.IsValid(m_sPathToCheck, out reasons);
-            m_reasons = reasons;
+
+            pathValidationRule.IsValid(m_sPathToCheck, ref m_reasons);
+ 
 
             // If the path itself is faulty we cannot check the contents
             if (!m_reasons.ContainsError)
                 CheckFolders();
 
+            reasons = m_reasons;
             return m_reasons.Count == 0 ? true : false;
         }
 
@@ -76,6 +80,15 @@ namespace CEWSP_v2.Analytics.ValidationRules
 
                 m_reasons.Add(reason);
             }
+        }
+
+        void ResetRquiredFolders()
+        {
+            m_requiredFolders.Clear();
+
+            m_requiredFolders.Add("Bin32", false);
+            m_requiredFolders.Add("Bin64", false);
+            m_requiredFolders.Add("Code", false);
         }
     }
 }

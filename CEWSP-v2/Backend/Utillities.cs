@@ -21,8 +21,8 @@ namespace CEWSP_v2.Backend
         static BitmapImage m_warningBitmap;
         static BitmapImage m_infoBitmap;
 
-        public static int ToolTipIconWidth { get; set; } 
- 
+        public static int ToolTipIconWidth { get; set; }
+
         static Utillities()
         {
             ToolTipIconWidth = 20;
@@ -106,7 +106,7 @@ namespace CEWSP_v2.Backend
                 {
                     var subStack = new StackPanel() { Orientation = Orientation.Horizontal };
 
-                  
+
                     var img = new Image()
                     {
                         Source = InfoBitmap,
@@ -130,6 +130,7 @@ namespace CEWSP_v2.Backend
         public static Popup CreateIssueToolTip(ReasonList reasons)
         {
             var tip = new Popup();
+
             tip.Opened += delegate
             {
                 tip.MouseLeave += delegate
@@ -137,8 +138,8 @@ namespace CEWSP_v2.Backend
                     tip.IsOpen = false;
                 };
             };
-    
-            var scrollViewer = new ScrollViewer() { MaxWidth = 400 };
+
+            var scrollViewer = new ScrollViewer() { MaxWidth = 400, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, HorizontalScrollBarVisibility = ScrollBarVisibility.Auto };
             tip.Child = scrollViewer;
 
             var headerIconImage = new Image() { Width = ToolTipIconWidth, Height = ToolTipIconWidth };
@@ -183,7 +184,7 @@ namespace CEWSP_v2.Backend
 
                 foreach (var reason in reasons)
                 {
-                    var reasonExpander = new Expander() { IsExpanded = false } ;
+                    var reasonExpander = new Expander() { IsExpanded = false };
 
                     var reasonStackPanel = new StackPanel() { Orientation = Orientation.Horizontal };
                     var reasonImage = new Image() { Width = ToolTipIconWidth, Height = ToolTipIconWidth };
@@ -221,7 +222,7 @@ namespace CEWSP_v2.Backend
 
                             var solListItem = new ListViewItem() { Content = solStackPanel, IsEnabled = false };
                             reasonSolutions.Items.Add(solListItem);
-                        } 
+                        }
                     }
 
                     var reasonListItem = new ListViewItem() { Content = reasonExpander };

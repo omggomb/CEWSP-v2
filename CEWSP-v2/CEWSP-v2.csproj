@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Analytics\ValidationRules\BaseValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\CEGameValidationRule.cs" />
     <Compile Include="Analytics\ValidationRules\CEPathValidationRule.cs" />
     <Compile Include="Analytics\ValidationRules\CERootPathValidationRule.cs" />
     <Compile Include="Analytics\ValidationRules\IValidationRule.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Analytics\PredefinedReasons\PathNonExistentReason.cs" />
     <Compile Include="Analytics\Reason.cs" />
     <Compile Include="Analytics\ReasonList.cs" />
+    <Compile Include="Analytics\ValidationRules\PorjectNameValidationRule.cs" />
     <Compile Include="Backend\Utillities.cs" />
     <Compile Include="Properties\CreateNewProject.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -16,7 +16,7 @@
         <Button Margin="10,10,0,0" Name="browseImageButton" HorizontalAlignment="Left" Width="118" Height="118" VerticalAlignment="Top">
             <Image x:Name="projectImage"  Source="/Images/default-project-image.png"/>
         </Button>
-        <TextBox Margin="133,105,0,0" Text="TextBox" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="179"/>
+        <TextBox Name="projectNameTextBox" Margin="133,105,0,0" Text="{Binding ElementName=createProjectWindow, Path=ProjectName}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="179"/>
         <Label Content="{x:Static p:CreateNewProject.LblProjectName}" HorizontalAlignment="Left" Margin="133,74,0,0" VerticalAlignment="Top" Height="26" Width="82" />
         <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="0,36,0,0" Grid.Row="1" Width="75" Height="23" VerticalAlignment="Top" Grid.Column="1"/>
@@ -33,20 +33,22 @@
                 <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="45*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding  ElementName=createProjectWindow, Path=CERoot}" VerticalAlignment="Top"/>
-            <Button Content="x" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="36" Height="23"/>
+            <TextBox Name="ceRootTextBox" Height="23" TextWrapping="Wrap" Text="{Binding  ElementName=createProjectWindow, Path=CERoot, Mode=TwoWay}" VerticalAlignment="Top"/>
+            <Button x:Name="clearCERootButton" Content="x" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="36" Height="23" Click="clearCERootButton_Click"/>
             <Image Name="ceRootIssuesImage" Grid.Column="1" MouseEnter="ceRootIssuesImage_MouseEnter" />
         </Grid>
         <Grid Height="23" Margin="12,97,10,0" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="423*"/>
-                <ColumnDefinition Name="ceGamefolderIssueColumn" Width="0*"/>
+                <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="45*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-            <Button Content="x" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="36" Height="23"/>
+            <TextBox Name="ceGameTextBox" Height="23" TextWrapping="Wrap" Text="{Binding ElementName=createProjectWindow, Path=CEGame}" VerticalAlignment="Top"/>
+            <Button x:Name="clearCEGameButton" Content="x" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="36" Height="23" Click="clearCEGameButton_Click"/>
+            <Image Name="ceGameIssuesImage" Grid.Column="1" MouseEnter="ceGameIssuesImage_MouseEnter" />
         </Grid>
-        <Button Content="x" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="36" Height="23" Margin="312,105,0,0"/>
+        <Button Name="clearProjectNameButton" Content="x" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="36" Height="23" Margin="352,105,0,0" Click="clearProjectNameButton_Click"/>
+        <Image Name="projectNameIssuesImage" Width="30" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="317,105,0,0" MouseEnter="projectNameIssuesImage_MouseEnter"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="289,173,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="22"/>
         <Button Name="cancelButton" Content="{x:Static p:Resources.BtnCancel}" Grid.Column="1" Margin="40,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" Click="cancelButton_Click"/>
         <Button Name="createButton" Content="{x:Static p:Resources.BtnCreate}" HorizontalAlignment="Left" Margin="514,0,0,10" Grid.Row="1" Width="75" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Click="createButton_Click"/>

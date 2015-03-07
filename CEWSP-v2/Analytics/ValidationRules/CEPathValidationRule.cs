@@ -36,15 +36,14 @@ namespace CEWSP_v2.Analytics.ValidationRules
             m_bNonExistingPathIsError = bNonExistingPathIsError;
         }
 
-        public override bool IsValid(object o, out ReasonList reasons)
+        public override bool IsValid(object o, ref ReasonList reasons, params object[] additionalArgs)
         {
-            if (o == null)
-                throw new ArgumentNullException("o");
+            base.IsValid(o, ref reasons, additionalArgs);
 
             if (!(o is string))
                 throw new ArgumentException("CEPathvValidationRule was called without using a string.");
+
             
-            m_reasons = reasons = new ReasonList();
 
             m_sPathToCheck = o as string;
 

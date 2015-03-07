@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CEGameCannotCheckRootInvalid" xml:space="preserve">
+    <value>Cannot check game folder for validity as the CE root folder is not valid</value>
+  </data>
+  <data name="CEGameNameIsEmpty" xml:space="preserve">
+    <value>Please specify a name</value>
+  </data>
+  <data name="CEGameNameIsPath" xml:space="preserve">
+    <value>The specified name seems to be a path, please only specify a name.</value>
+  </data>
+  <data name="CEGameNotExist" xml:space="preserve">
+    <value>The specified folder does not exist, it will be created</value>
+  </data>
   <data name="CERootIsMissingFolders" xml:space="preserve">
     <value>The specified path is missing at least one expected folder</value>
   </data>
@@ -135,8 +147,23 @@
   <data name="PathDoesNotExist" xml:space="preserve">
     <value>The specified path does not exist.</value>
   </data>
+  <data name="ProjectNameEmpty" xml:space="preserve">
+    <value>Please choose a unique name for this project</value>
+  </data>
+  <data name="ProjectNameExists" xml:space="preserve">
+    <value>The chosen project name already exists, please choose a different one.</value>
+  </data>
+  <data name="SolCEGameCannotCheckRootInvalid" xml:space="preserve">
+    <value>Specifiy a valid CE root installation folder</value>
+  </data>
+  <data name="SolCEGameNotExist" xml:space="preserve">
+    <value>Make sure you spelled the name correctly</value>
+  </data>
   <data name="SolCERootIsMissingFolders" xml:space="preserve">
     <value>Please choose a valid CE installation directory.</value>
+  </data>
+  <data name="SolGameNameIsPath" xml:space="preserve">
+    <value>The game folder must reside inside the CE root, so a name is enough</value>
   </data>
   <data name="SolPathContainsNonLatinCharacters" xml:space="preserve">
     <value>Make sure to only use letters from a to z and numbers from 0 to 9</value>
