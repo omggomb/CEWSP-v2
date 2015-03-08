@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System;
+using CEWSP_v2.Dialogs.AlteredControls;
 
 namespace CEWSP_v2.Dialogs
 {
@@ -129,6 +130,7 @@ namespace CEWSP_v2.Dialogs
             CEGame = "";
             ProjectName = "";
             ResetProjectImage();
+            ResetTemplateList();
         }
 
         private void CreateToolTips()
@@ -325,7 +327,27 @@ namespace CEWSP_v2.Dialogs
 
         void ResetTemplateList()
         {
+            foreach (var template in Backend.ApplicationBackend.FoundGameTemplates)
+            {
+                var item = new GameTemplateComboItem() { Content = template.Name, AssociatedGameTemplate = template };
+                gameTemplateComboBox.Items.Add(item);
+            }
 
+            if (Backend.ApplicationBackend.FoundGameTemplates.Count > 0)
+                gameTemplateComboBox.SelectedIndex = 0;
+
+       
+        }
+
+        private void gameTemplateComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 1)
+            {
+                var item = e.AddedItems[0] as GameTemplateComboItem;
+                string sAbsPath = item.AssociatedGameTemplate.Directory.FullName + "\\" + item.AssociatedGameTemplate.DescFilePath;
+                gameTemplateDescWebBrowser.Source = new Uri(sAbsPath);
+            }
+            
         }
     }
 }

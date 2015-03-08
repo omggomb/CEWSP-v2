@@ -71,6 +71,7 @@
     <Compile Include="Analytics\ValidationRules\PorjectNameValidationRule.cs" />
     <Compile Include="Backend\GameTemplate.cs" />
     <Compile Include="Backend\Utillities.cs" />
+    <Compile Include="Dialogs\AlteredControls\GameTemplateComboItem.cs" />
     <Compile Include="Properties\CreateNewProject.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -189,6 +190,7 @@
   <ItemGroup>
     <Resource Include="Images\checkmark-icon-64.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

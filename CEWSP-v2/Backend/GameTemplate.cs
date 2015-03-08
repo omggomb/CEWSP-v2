@@ -76,6 +76,13 @@ namespace CEWSP_v2.Backend
         public string IconPath { get; set; }
         public string DescFilePath { get; set; }
         public List<CEVersion> SupportedVersions { get; set; }
+        public DirectoryInfo Directory 
+        {
+            get
+            {
+                return m_dirInf;
+            }
+        }
        
         public GameTemplate()
         {
@@ -85,6 +92,8 @@ namespace CEWSP_v2.Backend
         public bool LoadFromFolder(string sPath)
         {
             m_dirInf = new DirectoryInfo(sPath);
+
+            Log.LogInfo("Loading game template '" + m_dirInf.Name + "'...");
 
             if (!m_dirInf.Exists)
             {
@@ -122,7 +131,11 @@ namespace CEWSP_v2.Backend
                     IconPath = splitLine[1];
                 else if (splitLine[0] == ConfigValueNames.CompatibleVersions)
                 {
+                    
                     string sVersionsString = splitLine[1];
+
+                    if (sVersionsString == "all")
+                        continue;
 
                     var versions = sVersionsString.Split(';');
 

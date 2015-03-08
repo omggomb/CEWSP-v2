@@ -27,9 +27,12 @@ namespace CEWSP_v2.Backend
 
         public static List<string> FoundProjectsNames { get; private set; }
 
+        public static List<GameTemplate> FoundGameTemplates { get; private set; }
+
         static ApplicationBackend ()
         {
             FoundProjectsNames = new List<string>();
+            FoundGameTemplates = new List<GameTemplate>();
         }
 
         /// <summary>
@@ -55,6 +58,8 @@ namespace CEWSP_v2.Backend
             Log.LogInfo("Successfully loaded profiles.");
 
             FoundProjectsNames.Add("fakeProject");
+
+            LoadGameTemplates();
 
 
            
@@ -119,6 +124,8 @@ namespace CEWSP_v2.Backend
         {
             var dirInf = new DirectoryInfo(ConstantDefinitions.RelativeProjectsPath);
 
+            Log.LogInfo("Loading projects...");
+
             // TODO : Tell user he has to create a project ... startup page?
             // If dir doesn't exist, a new project has to be created
             if (!dirInf.Exists)
@@ -147,7 +154,27 @@ namespace CEWSP_v2.Backend
 
         static void LoadGameTemplates()
         {
+            Log.LogInfo("Loading game tamplates...");
+
             var dirInf = new DirectoryInfo(ConstantDefinitions.RelativeGameTemplatesPath);
+
+            if (!dirInf.Exists)
+            {
+                Log.LogInfo("No game templates found, nothing loaded.");
+                return;
+            }
+
+            foreach (var dir in dirInf.GetDirectories())
+            {
+                var t = new GameTemplate();
+
+                if (t.LoadFromFolder(dir.FullName))
+                {
+                    FoundGameTemplates.Add(t);
+                    Log.LogInfo("Successfully loaded game template '" + t.Name + "'.");
+                }
+                    
+            }
         }
     }
 }

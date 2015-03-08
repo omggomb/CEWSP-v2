@@ -29,8 +29,8 @@
         <Label Content="{x:Static p:CreateNewProject.LblCEGame}" HorizontalAlignment="Left" Margin="10,71,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="Auto"/>
         <Button Content="{x:Static p:Resources.BtnBrowse}" Grid.Column="1" HorizontalAlignment="Left" Margin="0,97,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="23"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="12,147,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
-        <ComboBox Margin="12,173,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="272" Height="22"/>
-        <WebBrowser Margin="12,235,10,51" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <ComboBox Name="gameTemplateComboBox" Margin="12,173,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="272" Height="22" SelectionChanged="gameTemplateComboBox_SelectionChanged"/>
+        <WebBrowser Name="gameTemplateDescWebBrowser" Margin="12,235,10,51" Grid.Row="1" Grid.ColumnSpan="2"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="12,204,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
         <Grid Name="ceRootGrid" Height="23" Margin="12,36,10,0" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
