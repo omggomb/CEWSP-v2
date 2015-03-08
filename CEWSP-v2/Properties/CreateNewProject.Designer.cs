@@ -61,6 +61,24 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configure template.
+        /// </summary>
+        public static string BtnConfigTemplate {
+            get {
+                return ResourceManager.GetString("BtnConfigTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No template.
+        /// </summary>
+        public static string DefaultTemplateName {
+            get {
+                return ResourceManager.GetString("DefaultTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specify a game folder name.
         /// </summary>
         public static string LblCEGame {
@@ -84,6 +102,24 @@ namespace CEWSP_v2.Properties {
         public static string LblProjectName {
             get {
                 return ResourceManager.GetString("LblProjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a template (press &quot;Configure template&quot; to customize it).
+        /// </summary>
+        public static string LblTemplate {
+            get {
+                return ResourceManager.GetString("LblTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template description.
+        /// </summary>
+        public static string LblTemplateDesc {
+            get {
+                return ResourceManager.GetString("LblTemplateDesc", resourceCulture);
             }
         }
         

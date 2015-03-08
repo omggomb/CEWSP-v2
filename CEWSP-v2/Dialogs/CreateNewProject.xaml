@@ -28,10 +28,10 @@
 
         <Label Content="{x:Static p:CreateNewProject.LblCEGame}" HorizontalAlignment="Left" Margin="10,71,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="Auto"/>
         <Button Content="{x:Static p:Resources.BtnBrowse}" Grid.Column="1" HorizontalAlignment="Left" Margin="0,97,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="23"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="12,147,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
-        <ComboBox Name="gameTemplateComboBox" Margin="12,173,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="272" Height="22" SelectionChanged="gameTemplateComboBox_SelectionChanged"/>
-        <WebBrowser Name="gameTemplateDescWebBrowser" Margin="12,235,10,51" Grid.Row="1" Grid.ColumnSpan="2"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="12,204,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="38"/>
+        <Label Content="{x:Static p:CreateNewProject.LblTemplate}" HorizontalAlignment="Left" Margin="12,147,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="Auto"/>
+        <ComboBox Name="gameTemplateComboBox" Margin="12,173,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="272" Height="64" SelectionChanged="gameTemplateComboBox_SelectionChanged"/>
+        <WebBrowser Name="gameTemplateDescWebBrowser" Margin="12,263,10,51" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Label Content="{x:Static p:CreateNewProject.LblTemplateDesc}" HorizontalAlignment="Left" Margin="12,237,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26"/>
         <Grid Name="ceRootGrid" Height="23" Margin="12,36,10,0" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="423*"/>
@@ -54,8 +54,9 @@
         </Grid>
         <Button Name="clearProjectNameButton" Content="x" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="36" Height="23" Margin="352,105,0,0" Click="clearProjectNameButton_Click"/>
         <Image Name="projectNameIssuesImage" Width="30" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="317,105,0,0" MouseEnter="projectNameIssuesImage_MouseEnter"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="289,173,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="22"/>
+        <Button Name="configureTemplateButton" Content="{x:Static p:CreateNewProject.BtnConfigTemplate}" HorizontalAlignment="Left" Margin="289,188,0,0" Grid.Row="1" VerticalAlignment="Top" Width="Auto" Height="22"/>
         <Button Name="cancelButton" Content="{x:Static p:Resources.BtnCancel}" Grid.Column="1" Margin="40,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" Click="cancelButton_Click"/>
         <Button Name="createButton" Content="{x:Static p:Resources.BtnCreate}" HorizontalAlignment="Left" Margin="514,0,0,10" Grid.Row="1" Width="75" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Click="createButton_Click"/>
+        <Image x:Name="gameTemplateIssuesImage" Width="30" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="401,188,0,0" Grid.Row="2"/>
     </Grid>
 </Window>

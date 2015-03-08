@@ -164,8 +164,23 @@ namespace CEWSP_v2.Backend
                 return;
             }
 
+         
+
             foreach (var dir in dirInf.GetDirectories())
             {
+                // none is a template that does not alter any files, but still 
+                // can display a configuration dialog. Its name is localized thus it
+                // must be loaded seperately
+                if (dir.Name == "none")
+                {
+                    var defaultTemplate = new GameTemplate();
+                    defaultTemplate.LoadFromFolder(dir.FullName);
+
+                    defaultTemplate.Name = Properties.CreateNewProject.DefaultTemplateName;
+                    FoundGameTemplates.Add(defaultTemplate);
+                    continue;
+                }
+
                 var t = new GameTemplate();
 
                 if (t.LoadFromFolder(dir.FullName))

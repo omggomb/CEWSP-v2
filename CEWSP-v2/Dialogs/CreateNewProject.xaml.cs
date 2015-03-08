@@ -330,6 +330,7 @@ namespace CEWSP_v2.Dialogs
             foreach (var template in Backend.ApplicationBackend.FoundGameTemplates)
             {
                 var item = new GameTemplateComboItem() { Content = template.Name, AssociatedGameTemplate = template };
+                item.ConstructHeader();
                 gameTemplateComboBox.Items.Add(item);
             }
 

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Setting
+    identificationName="lastUsedProject"
+    humanReadableName="Last active project"
+    description="The project that was active when CEWSP was closed"
+    category="Projects"
+    typeAsString="string"
+    value="!none" />
+  <Setting
+    identificationName="showWelcomeWindow"
+    humanReadableName="Show welcome window on startup"
+    description="Should the welcome window be shown on startup"
+    category="Startup"
+    typeAsString="bool"
+    value="True" />
+</Settings>
