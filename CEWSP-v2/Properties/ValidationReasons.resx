@@ -121,7 +121,7 @@
     <value>Cannot check game folder for validity as the CE root folder is not valid</value>
   </data>
   <data name="CEGameNameIsEmpty" xml:space="preserve">
-    <value>Please specify a name</value>
+    <value>Please specify a game folder names</value>
   </data>
   <data name="CEGameNameIsPath" xml:space="preserve">
     <value>The specified name seems to be a path, please only specify a name.</value>
@@ -177,5 +177,8 @@
   </data>
   <data name="SolPathDoesNotExistCreate" xml:space="preserve">
     <value>Create the desired path</value>
+  </data>
+  <data name="TemplateMightOverride" xml:space="preserve">
+    <value>The game folder is not empty thus the game template may override existing files and directories when being installed.</value>
   </data>
 </root>

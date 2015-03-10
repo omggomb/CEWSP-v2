@@ -27,6 +27,7 @@ namespace CEWSP_v2.Dialogs
         Popup m_ceRootIssuesPopup;
         Popup m_ceGameIssuesPopup;
         Popup m_projectNameIssuesPopup;
+        Popup m_gameTemplateIssuesPopup;
 
         Analytics.ValidationRules.CERootPathValidationRule m_ceRootValidationRule;
         Analytics.ValidationRules.CEGameValidationRule m_ceGameValidationRule;
@@ -47,10 +48,10 @@ namespace CEWSP_v2.Dialogs
             {
                 Analytics.ReasonList reasons = null;
 
-                m_sCERoot = value;
-                m_ceRootValidationRule.IsValid(value, ref reasons);
+                m_sCERoot = GetCERootFromEditorExe(value);
+                m_ceRootValidationRule.IsValid(m_sCERoot, ref reasons);
                 DisplayCERootIssues(reasons);
-                ceRootTextBox.Text = m_sCERoot;
+                ceRootTextBox.Text = value;
 
                  // If the root folder is changed the game folder may need to change, too
                 if (m_sCEGame != null)
@@ -75,6 +76,12 @@ namespace CEWSP_v2.Dialogs
                 m_ceGameValidationRule.IsValid(m_sCEGame, ref reasons, m_sCERoot);
                 DisplayCEGameIssues(reasons);
                 ceGameTextBox.Text = m_sCEGame;
+                
+                if (gameTemplateComboBox.SelectedIndex >= 0)
+                {
+                    var item = gameTemplateComboBox.SelectedItem as GameTemplateComboItem;
+                    CheckSaveTemplateInstallation(item.AssociatedGameTemplate.Name == Properties.CreateNewProject.DefaultTemplateName);
+                }
                
             }
         }
@@ -126,7 +133,7 @@ namespace CEWSP_v2.Dialogs
 
             CreateToolTips();
 
-            CERoot = @"E:\Dev\CRYENGINE\358";
+            CERoot = @"E:\Dev\CRYENGINE\358\Bin64\Editor.exe";
             CEGame = "";
             ProjectName = "";
             ResetProjectImage();
@@ -153,13 +160,23 @@ namespace CEWSP_v2.Dialogs
 
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
+            if (m_projectNameValidationRule.IsValid(m_sProjectName) &&
+                m_ceRootValidationRule.IsValid(m_sCERoot) &&
+                m_ceGameValidationRule.IsValid(m_sCEGame, m_sCERoot))
+            {
 
+            }
+            else
+            {
+                MessageBox.Show(Properties.CreateNewProject.NoCreateSolveIssues,
+                                Properties.Resources.CommonError, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         string GetProjectName()
         {
             if (m_bProjectCreated)
-                return "Hello";
+                return ProjectName;
             else
                 return Definitions.ConstantDefinitions.CommonValueNone;
         }
@@ -247,6 +264,9 @@ namespace CEWSP_v2.Dialogs
 
             if (m_projectNameIssuesPopup != null && !m_projectNameIssuesPopup.IsMouseOver)
                 m_projectNameIssuesPopup.IsOpen = false;
+
+            if (m_gameTemplateIssuesPopup != null && !m_gameTemplateIssuesPopup.IsMouseOver)
+                m_gameTemplateIssuesPopup.IsOpen = false;
         }
 
         private void ceGameIssuesImage_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -322,6 +342,35 @@ namespace CEWSP_v2.Dialogs
 
         private void browseCERootButton_Click(object sender, RoutedEventArgs e)
         {
+            var dia = new OpenFileDialog()
+            {
+                Multiselect = false,
+                CheckFileExists = true,
+                CheckPathExists = true,
+                Filter = "SandBox|Editor.exe"
+            };
+            dia.FileOk += dia_FileOk;
+
+            dia.ShowDialog();
+        }
+
+        void dia_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            CERoot = (sender as OpenFileDialog).FileName;
+        }
+
+        string GetCERootFromEditorExe(string sPathToEditorExe)
+        {
+            var inf = new FileInfo(sPathToEditorExe);
+
+            if (inf.Exists)
+            {
+                return inf.Directory.Parent.FullName;
+            }
+            else
+            {
+                return sPathToEditorExe;
+            }
             
         }
 
@@ -347,8 +396,78 @@ namespace CEWSP_v2.Dialogs
                 var item = e.AddedItems[0] as GameTemplateComboItem;
                 string sAbsPath = item.AssociatedGameTemplate.Directory.FullName + "\\" + item.AssociatedGameTemplate.DescFilePath;
                 gameTemplateDescWebBrowser.Source = new Uri(sAbsPath);
+
+                CheckSaveTemplateInstallation(item.AssociatedGameTemplate.Name == Properties.CreateNewProject.DefaultTemplateName);
             }
             
+        }
+
+        private void CheckSaveTemplateInstallation(bool bIsDefaultTemplate)
+        {
+            if (CEGame == null || CEGame == "")
+            {
+                var reasons = new ReasonList();
+                reasons.Add(new Reason()
+                    {
+                        HumanReadableExplanation = Properties.ValidationReasons.CEGameNameIsEmpty,
+                        ReasonType = EReason.eR_CheckGameNameEmpty,
+                        Severity = EReasonSeverity.eRS_error
+                    });
+
+                DisplayTemplateIssues(reasons);
+
+            }
+            else if (!bIsDefaultTemplate)
+            {
+                var dir = new DirectoryInfo(CERoot + "\\" + CEGame);
+
+
+
+                if (dir.Exists)
+                {
+                    var reasonList = new Analytics.ReasonList();
+                    reasonList.Add(new Reason()
+                    {
+                        HumanReadableExplanation = Properties.ValidationReasons.TemplateMightOverride,
+                        Severity = EReasonSeverity.eRS_warning,
+                        ReasonType = EReason.eR_GameNotEmptyTemplateOverride
+                    });
+
+                    DisplayTemplateIssues(reasonList);
+                }
+            }
+            else
+                DisplayTemplateIssues(null);
+           
+        }
+
+        private void DisplayTemplateIssues(ReasonList reasonList)
+        {
+            if (reasonList != null && reasonList.Count > 0)
+            {
+                if (reasonList.ContainsError)
+                    gameTemplateIssuesImage.Source = Utillities.ErrorBitmap;
+                else
+                    gameTemplateIssuesImage.Source = Utillities.WarningBitmap;
+
+                m_gameTemplateIssuesPopup = Utillities.CreateIssueToolTip(reasonList);
+                m_gameTemplateIssuesPopup.PlacementTarget = gameTemplateIssuesImage;
+            }
+            else
+            {
+                gameTemplateIssuesImage.Source = Utillities.CheckmarkBitmap;
+                m_gameTemplateIssuesPopup = null;
+            }
+        }
+
+        private void gameTemplateIssuesImage_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (m_gameTemplateIssuesPopup != null)
+            {
+                m_gameTemplateIssuesPopup.IsOpen = true;
+                m_gameTemplateIssuesPopup.StaysOpen = true;
+                m_gameTemplateIssuesPopup.PlacementTarget = gameTemplateIssuesImage;
+            }
         }
     }
 }

@@ -127,7 +127,7 @@
     <value>Specify a game folder name</value>
   </data>
   <data name="LblCERoot" xml:space="preserve">
-    <value>Specify your CE installation directory</value>
+    <value>Specify the path to the CE editor executable.</value>
   </data>
   <data name="LblProjectName" xml:space="preserve">
     <value>Project name:</value>
@@ -137,6 +137,9 @@
   </data>
   <data name="LblTemplateDesc" xml:space="preserve">
     <value>Template description</value>
+  </data>
+  <data name="NoCreateSolveIssues" xml:space="preserve">
+    <value>Your input contains errors, please fix them first (warnings may be ignored).</value>
   </data>
   <data name="TipImage" xml:space="preserve">
     <value>An image to identify this project.</value>

@@ -62,7 +62,7 @@ namespace CEWSP_v2.Analytics.ValidationRules
              CheckName();
 
             reasons = m_reasons;
-            return m_reasons.Count == 0 ? true : false;
+            return !m_reasons.ContainsError;
         }
 
 

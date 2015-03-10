@@ -54,7 +54,7 @@ namespace CEWSP_v2.Analytics.ValidationRules
 
             CheckCharacters();
 
-            return reasons.Count == 0 ? true : false;
+            return !m_reasons.ContainsError;
         }
 
         void CheckCharacters()

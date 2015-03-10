@@ -39,7 +39,8 @@ namespace CEWSP_v2.Analytics
         eR_CheckGamePathNotExist,
         eR_CheckGameNameEmpty,
         eR_ProjectNameExists,
-        eR_ProjectNameEmpty
+        eR_ProjectNameEmpty,
+        eR_GameNotEmptyTemplateOverride
     }
 
     /// <summary>

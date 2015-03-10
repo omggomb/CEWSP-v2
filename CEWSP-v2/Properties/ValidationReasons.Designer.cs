@@ -70,7 +70,7 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please specify a name.
+        ///   Looks up a localized string similar to Please specify a game folder names.
         /// </summary>
         public static string CEGameNameIsEmpty {
             get {
@@ -238,6 +238,15 @@ namespace CEWSP_v2.Properties {
         public static string SolPathDoesNotExistCreate {
             get {
                 return ResourceManager.GetString("SolPathDoesNotExistCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game folder is not empty thus the game template may override existing files and directories when being installed..
+        /// </summary>
+        public static string TemplateMightOverride {
+            get {
+                return ResourceManager.GetString("TemplateMightOverride", resourceCulture);
             }
         }
     }

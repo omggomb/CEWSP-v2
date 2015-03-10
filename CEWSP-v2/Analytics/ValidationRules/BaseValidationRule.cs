@@ -31,7 +31,7 @@ namespace CEWSP_v2.Analytics.ValidationRules
         {
             ReasonList list = null;
 
-            return IsValid(o, ref list);
+            return IsValid(o, ref list, additionalArgs);
         }
 
         public ReasonList Reasons

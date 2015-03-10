@@ -88,7 +88,7 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specify your CE installation directory.
+        ///   Looks up a localized string similar to Specify the path to the CE editor executable..
         /// </summary>
         public static string LblCERoot {
             get {
@@ -120,6 +120,15 @@ namespace CEWSP_v2.Properties {
         public static string LblTemplateDesc {
             get {
                 return ResourceManager.GetString("LblTemplateDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your input contains errors, please fix them first (warnings may be ignored)..
+        /// </summary>
+        public static string NoCreateSolveIssues {
+            get {
+                return ResourceManager.GetString("NoCreateSolveIssues", resourceCulture);
             }
         }
         

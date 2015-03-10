@@ -45,7 +45,7 @@ namespace CEWSP_v2.Analytics.ValidationRules
                 CheckFolders();
 
             reasons = m_reasons;
-            return m_reasons.Count == 0 ? true : false;
+            return !m_reasons.ContainsError;
         }
 
         private void CheckFolders()
