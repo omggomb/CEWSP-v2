@@ -19,7 +19,23 @@ namespace CEWSP_v2.Backend
         /// </summary>
         string ProjectRootFolder { get; set; }
 
+        /// <summary>
+        /// The folder that stores all the game assets
+        /// </summary>
+        string GameFolderName { get; set; }
+
+        /// <summary>
+        /// The name of the project
+        /// </summary>
+        string ProjectName { get; set; }
+
+
         public SettingsManager ProjectSettings { get; private set; }
+
+        public Project()
+        {
+            ProjectSettings = new SettingsManager(Log.ApplicationLog);
+        }
 
 
         /// <summary>
@@ -61,6 +77,11 @@ namespace CEWSP_v2.Backend
         public void ResetFactoryDefaults()
         {
             // TODO: implement Project::ResetFactoryDefaults
+            ProjectSettings.AddSetting(new StringSetting()
+                {
+                    HumanReadableName = 
+                })
+
         }
 
     }

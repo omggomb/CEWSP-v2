@@ -88,6 +88,15 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The path to the Bin64\Editor.exe file of t.
+        /// </summary>
+        public static string HumProCERoot {
+            get {
+                return ResourceManager.GetString("HumProCERoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show welcome window on startup.
         /// </summary>
         public static string HumShowWelcomeWindow {

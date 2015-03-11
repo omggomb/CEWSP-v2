@@ -164,13 +164,19 @@ namespace CEWSP_v2.Dialogs
                 m_ceRootValidationRule.IsValid(m_sCERoot) &&
                 m_ceGameValidationRule.IsValid(m_sCEGame, m_sCERoot))
             {
-
+                CreateProjectFromInputs();
             }
             else
             {
                 MessageBox.Show(Properties.CreateNewProject.NoCreateSolveIssues,
                                 Properties.Resources.CommonError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void CreateProjectFromInputs()
+        {
+            var proj = new Project();
+
         }
 
         string GetProjectName()

@@ -126,6 +126,9 @@
   <data name="HumLastUsedProject" xml:space="preserve">
     <value>Last active project</value>
   </data>
+  <data name="HumProCERoot" xml:space="preserve">
+    <value>The path to the Bin64\Editor.exe file of t</value>
+  </data>
   <data name="HumShowWelcomeWindow" xml:space="preserve">
     <value>Show welcome window on startup</value>
   </data>
