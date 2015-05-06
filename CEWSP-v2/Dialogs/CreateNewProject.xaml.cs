@@ -175,8 +175,11 @@ namespace CEWSP_v2.Dialogs
 
         private void CreateProjectFromInputs()
         {
-            var proj = new Project();
+            var proj = new Project(ProjectName ,CERoot, CEGame, ProjectImagePath);
 
+            proj.SaveToFolder();
+
+            m_bProjectCreated = true;
         }
 
         string GetProjectName()

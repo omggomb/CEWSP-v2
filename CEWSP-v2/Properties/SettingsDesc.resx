@@ -120,6 +120,15 @@
   <data name="DescLastUsedProject" xml:space="preserve">
     <value>The project that was active when CEWSP was closed</value>
   </data>
+  <data name="DescProjCERoot" xml:space="preserve">
+    <value>The root directory of the CE installation used for this project</value>
+  </data>
+  <data name="DescProjGameFolder" xml:space="preserve">
+    <value>The root directory of the game folder used for this project</value>
+  </data>
+  <data name="DescProjName" xml:space="preserve">
+    <value>The name of this project</value>
+  </data>
   <data name="DescShowWelcomeWindow" xml:space="preserve">
     <value>Should the welcome window be shown on startup</value>
   </data>
@@ -128,6 +137,15 @@
   </data>
   <data name="HumProCERoot" xml:space="preserve">
     <value>The path to the Bin64\Editor.exe file of t</value>
+  </data>
+  <data name="HumProjCERoot" xml:space="preserve">
+    <value>CE Root installtion</value>
+  </data>
+  <data name="HumProjGameFolder" xml:space="preserve">
+    <value>Game folder path</value>
+  </data>
+  <data name="HumProjName" xml:space="preserve">
+    <value>Project name</value>
   </data>
   <data name="HumShowWelcomeWindow" xml:space="preserve">
     <value>Show welcome window on startup</value>

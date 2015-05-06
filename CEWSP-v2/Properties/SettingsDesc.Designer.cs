@@ -70,6 +70,33 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The root directory of the CE installation used for this project.
+        /// </summary>
+        public static string DescProjCERoot {
+            get {
+                return ResourceManager.GetString("DescProjCERoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The root directory of the game folder used for this project.
+        /// </summary>
+        public static string DescProjGameFolder {
+            get {
+                return ResourceManager.GetString("DescProjGameFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of this project.
+        /// </summary>
+        public static string DescProjName {
+            get {
+                return ResourceManager.GetString("DescProjName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Should the welcome window be shown on startup.
         /// </summary>
         public static string DescShowWelcomeWindow {
@@ -93,6 +120,33 @@ namespace CEWSP_v2.Properties {
         public static string HumProCERoot {
             get {
                 return ResourceManager.GetString("HumProCERoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CE Root installtion.
+        /// </summary>
+        public static string HumProjCERoot {
+            get {
+                return ResourceManager.GetString("HumProjCERoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game folder path.
+        /// </summary>
+        public static string HumProjGameFolder {
+            get {
+                return ResourceManager.GetString("HumProjGameFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project name.
+        /// </summary>
+        public static string HumProjName {
+            get {
+                return ResourceManager.GetString("HumProjName", resourceCulture);
             }
         }
         

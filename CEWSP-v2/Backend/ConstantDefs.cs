@@ -68,4 +68,23 @@ namespace CEWSP_v2.Definitions
         /// </summary>
         public const string SetShowWelcomeWindow = "showWelcomeWindow";
     }
+
+    /// <summary>
+    /// All names used for settings inside a project
+    /// </summary>
+    public class ProjectSettingsIdentificationNames
+    {
+        /// <summary>
+        /// Root installation directory of CE for this project
+        /// </summary>
+        public const string CERoot = "ceRoot";
+        /// <summary>
+        /// Relative path to the game folder used for this project
+        /// </summary>
+        public const string CEGame = "ceGameFolder";
+        /// <summary>
+        /// The name of the project
+        /// </summary>
+        public const string ProjectName = "projectName";
+    }
 }

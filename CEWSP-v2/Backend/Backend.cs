@@ -128,9 +128,13 @@ namespace CEWSP_v2.Backend
 
             // TODO : Tell user he has to create a project ... startup page?
             // If dir doesn't exist, a new project has to be created
-            if (!dirInf.Exists)
+            if (!dirInf.Exists || dirInf.GetDirectories().Length == 0)
             {
-                Log.LogWarning("No projects found.");    
+                Log.LogWarning("No projects found.");  
+                if (!dirInf.Exists)
+                {
+                    dirInf.Create();
+                }
                 return;
             }
 
