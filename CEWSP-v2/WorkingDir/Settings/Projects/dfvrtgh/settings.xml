@@ -6,19 +6,26 @@
     description="The name of this project"
     category=""
     typeAsString="string"
-    value="New Project" />
+    value="dfvrtgh" />
   <Setting
     identificationName="ceRoot"
     humanReadableName="CE Root installtion"
     description="The root directory of the CE installation used for this project"
     category=""
     typeAsString="string"
-    value="" />
+    value="G:\CRYENGINE_Development\357" />
   <Setting
     identificationName="ceGameFolder"
     humanReadableName="Game folder path"
     description="The root directory of the game folder used for this project"
     category=""
     typeAsString="string"
-    value="Game" />
+    value="dzszrzrjs" />
+  <Setting
+    identificationName="projectImagePath"
+    humanReadableName="Project image path"
+    description="The path to the image associated with this project"
+    category=""
+    typeAsString="string"
+    value="./Images/default-project-image.png" />
 </Settings>

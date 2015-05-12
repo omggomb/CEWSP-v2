@@ -126,6 +126,9 @@
   <data name="DescProjGameFolder" xml:space="preserve">
     <value>The root directory of the game folder used for this project</value>
   </data>
+  <data name="DescProjImage" xml:space="preserve">
+    <value>The path to the image associated with this project</value>
+  </data>
   <data name="DescProjName" xml:space="preserve">
     <value>The name of this project</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="HumProjGameFolder" xml:space="preserve">
     <value>Game folder path</value>
+  </data>
+  <data name="HumProjImage" xml:space="preserve">
+    <value>Project image path</value>
   </data>
   <data name="HumProjName" xml:space="preserve">
     <value>Project name</value>

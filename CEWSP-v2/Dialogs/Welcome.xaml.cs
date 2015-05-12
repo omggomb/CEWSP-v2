@@ -115,6 +115,12 @@ namespace CEWSP_v2.Dialogs
         {
             // TODO: AddProjectToList
             var item = new ListBoxItem() { Content = sProjectName };
+            item.MouseDoubleClick += delegate
+            {
+
+                m_sProjectToBeLoaded = item.Content as String;
+                Close();
+            };
             projectListBox.Items.Add(item);
         }
 

@@ -101,6 +101,16 @@ namespace CEWSP_v2
             {
                 sProjectToBeLoaded = Dialogs.Welcome.ShowAndReturn();   
             }
+
+            if (sProjectToBeLoaded != Definitions.ConstantDefinitions.CommonValueNone)
+            {
+                LoadProject(sProjectToBeLoaded);
+            }
+        }
+
+        private void LoadProject(string sProjectToBeLoaded)
+        {
+            throw new NotImplementedException();
         }
     }
 }

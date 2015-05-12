@@ -18,34 +18,72 @@ namespace CEWSP_v2.Backend
         /// <summary>
         /// The folder containing this project's settings.
         /// </summary>
-        string ProjectRootFolder { get; set; }
+        string ProjectRootFolder
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// The folder that stores all the game assets
         /// </summary>
-        string GameFolderName 
-        { 
-            get; 
+        string GameFolderName
+        {
+            get
+            {
+                return ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.CEGame).GetValueAsString();
+            }
             set
             {
-               // ProjectSettings.SetValue(Definitions.ProjectSettingsIdentificationNames.CEGame, value);
+                ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.CEGame).SetFromString(value);
             }
+
         }
 
         /// <summary>
         /// The name of the project
         /// </summary>
-        string ProjectName { get; set; }
+        string ProjectName 
+        {
+            get
+            {
+                return ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.ProjectName).GetValueAsString();
+            }
+            set
+            {
+                ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.ProjectName).SetFromString(value);
+            }
+        }
 
         /// <summary>
         /// The CE installation location used for this project
         /// </summary>
-        string ProjectCERoot { get; set; }
+        string ProjectCERoot
+        {
+            get
+            {
+                return ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.CERoot).GetValueAsString();
+            }
+            set
+            {
+                ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.CERoot).SetFromString(value);
+            }
+        }
 
         /// <summary>
         /// Path to the image associated with this project
         /// </summary>
-        string ImageDir { get; set; }
+        string ImageDir 
+        {
+            get
+            {
+                return ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.ProjectImagePath).GetValueAsString();
+            }
+            set
+            {
+                ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.ProjectImagePath).SetFromString(value);
+            }
+        }
 
 
         public SettingsManager ProjectSettings { get; private set; }
@@ -93,9 +131,11 @@ namespace CEWSP_v2.Backend
         public bool SaveToFolder()
         {
             // TODO: implement Project::SaveToFolder
-            return SaveToFolder(String.IsNullOrWhiteSpace(ProjectRootFolder) 
-                ? Definitions.ConstantDefinitions.RelativeProjectsPath + ProjectName + "\\" 
-                : ProjectRootFolder);
+            if (String.IsNullOrWhiteSpace(ProjectRootFolder))
+            {
+                ProjectRootFolder = Definitions.ConstantDefinitions.RelativeProjectsPath + ProjectName + "\\";
+            }
+            return SaveToFolder(ProjectRootFolder);
         }
 
         /// <summary>
@@ -106,7 +146,7 @@ namespace CEWSP_v2.Backend
         public bool SaveToFolder(string sPath)
         {
             Directory.CreateDirectory(sPath);
-            return ProjectSettings.SaveSettings(sPath + "\\hello.xml");
+            return ProjectSettings.SaveSettings(sPath + "\\settings.xml");
         }
 
         /// <summary>
@@ -137,6 +177,13 @@ namespace CEWSP_v2.Backend
                 HumanReadableName = Properties.SettingsDesc.HumProjGameFolder,
                 Description = Properties.SettingsDesc.DescProjGameFolder,
                 Value = "Game"
+            });
+
+            ProjectSettings.AddSetting(new StringSetting() {
+                IdentificationName = Definitions.ProjectSettingsIdentificationNames.ProjectImagePath,
+                HumanReadableName = Properties.SettingsDesc.HumProjImage,
+                Description = Properties.SettingsDesc.DescProjImage,
+                Value = Definitions.ConstantDefinitions.DefaultProjectImagePath
             });
         }
     }

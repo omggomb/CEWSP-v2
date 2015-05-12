@@ -165,6 +165,7 @@ namespace CEWSP_v2.Dialogs
                 m_ceGameValidationRule.IsValid(m_sCEGame, m_sCERoot))
             {
                 CreateProjectFromInputs();
+                Close();
             }
             else
             {

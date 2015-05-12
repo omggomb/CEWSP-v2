@@ -33,6 +33,11 @@ namespace CEWSP_v2.Definitions
         /// String value if no value is defined
         /// </summary>
         public const string CommonValueNone = "!none";
+
+        /// <summary>
+        /// Path to the default image used for projects
+        /// </summary>
+        public const string DefaultProjectImagePath = "./Images/default-project-image.png";
     }
 
     /// <summary>
@@ -86,5 +91,7 @@ namespace CEWSP_v2.Definitions
         /// The name of the project
         /// </summary>
         public const string ProjectName = "projectName";
+
+        public const string ProjectImagePath = "projectImagePath";
     }
 }
