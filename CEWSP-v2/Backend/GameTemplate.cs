@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CEWSP_v2.Backend
 {
-    public struct CEVersion
+    private struct CEVersion
     {
         /// <summary>
         /// First digit _3_.4.5

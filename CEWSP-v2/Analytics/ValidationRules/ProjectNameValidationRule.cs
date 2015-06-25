@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CEWSP_v2.Analytics.ValidationRules
 {
-    class PorjectNameValidationRule : BaseValidationRule
+    class ProjectNameValidationRule : BaseValidationRule
     {
         string m_sNameToCheck;
 

@@ -68,7 +68,8 @@
     <Compile Include="Analytics\PredefinedReasons\PathNonExistentReason.cs" />
     <Compile Include="Analytics\Reason.cs" />
     <Compile Include="Analytics\ReasonList.cs" />
-    <Compile Include="Analytics\ValidationRules\PorjectNameValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\ProjectNameValidationRule.cs" />
+    <Compile Include="Backend\CEVersionInfo.cs" />
     <Compile Include="Backend\GameTemplate.cs" />
     <Compile Include="Backend\Utillities.cs" />
     <Compile Include="Dialogs\AlteredControls\GameTemplateComboItem.cs" />

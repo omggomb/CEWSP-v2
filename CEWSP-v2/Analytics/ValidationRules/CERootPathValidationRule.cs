@@ -18,7 +18,7 @@ namespace CEWSP_v2.Analytics.ValidationRules
         {
             m_requiredFolders = new Dictionary<string, bool>();
 
-            ResetRquiredFolders();
+            ResetRequiredFolders();
             
         }
 
@@ -31,7 +31,7 @@ namespace CEWSP_v2.Analytics.ValidationRules
 
             
 
-            ResetRquiredFolders();
+            ResetRequiredFolders();
 
             m_sPathToCheck = o as string;
 
@@ -82,13 +82,13 @@ namespace CEWSP_v2.Analytics.ValidationRules
             }
         }
 
-        void ResetRquiredFolders()
+        void ResetRequiredFolders()
         {
             m_requiredFolders.Clear();
 
-            m_requiredFolders.Add("Bin32", false);
+            //m_requiredFolders.Add("Bin32", false);
             m_requiredFolders.Add("Bin64", false);
-            m_requiredFolders.Add("Code", false);
+            //m_requiredFolders.Add("Code", false);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace CEWSP_v2.Dialogs
 
         Analytics.ValidationRules.CERootPathValidationRule m_ceRootValidationRule;
         Analytics.ValidationRules.CEGameValidationRule m_ceGameValidationRule;
-        Analytics.ValidationRules.PorjectNameValidationRule m_projectNameValidationRule;
+        Analytics.ValidationRules.ProjectNameValidationRule m_projectNameValidationRule;
 
         string m_sCERoot;
         string m_sCEGame;
@@ -127,7 +127,7 @@ namespace CEWSP_v2.Dialogs
             m_bProjectCreated = false;
             m_ceRootValidationRule = new Analytics.ValidationRules.CERootPathValidationRule();
             m_ceGameValidationRule = new Analytics.ValidationRules.CEGameValidationRule();
-            m_projectNameValidationRule = new Analytics.ValidationRules.PorjectNameValidationRule();
+            m_projectNameValidationRule = new Analytics.ValidationRules.ProjectNameValidationRule();
 
             InitializeComponent();
 

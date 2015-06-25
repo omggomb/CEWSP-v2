@@ -39,7 +39,7 @@ namespace CEWSP_v2.Backend
         /// Loads the last known profile, profile history, creates a logging instance.
         /// If this fails, the application will not work and should shut down.
         /// </summary>
-        /// <returns>True on succes</returns>
+        /// <returns>True on success</returns>
         public static bool Init()
         {
             
@@ -154,11 +154,12 @@ namespace CEWSP_v2.Backend
                 FoundProjectsNames.Add(dir.Name);
                 Log.LogInfo("Found project with name: " + dir.Name);
             }
+
         }
 
         static void LoadGameTemplates()
         {
-            Log.LogInfo("Loading game tamplates...");
+            Log.LogInfo("Loading game templates...");
 
             var dirInf = new DirectoryInfo(ConstantDefinitions.RelativeGameTemplatesPath);
 
@@ -174,7 +175,7 @@ namespace CEWSP_v2.Backend
             {
                 // none is a template that does not alter any files, but still 
                 // can display a configuration dialog. Its name is localized thus it
-                // must be loaded seperately
+                // must be loaded separately
                 if (dir.Name == "none")
                 {
                     var defaultTemplate = new GameTemplate();
