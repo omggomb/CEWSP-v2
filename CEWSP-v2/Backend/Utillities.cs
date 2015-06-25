@@ -9,7 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-using CEWSP_v2.Definitions;
+using CEWSP_Backend.Definitions;
 using CEWSP_v2.Analytics;
 
 namespace CEWSP_v2.Backend

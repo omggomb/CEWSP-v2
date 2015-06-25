@@ -11,6 +11,8 @@ using System.Windows.Media.Imaging;
 using System;
 using CEWSP_v2.Dialogs.AlteredControls;
 
+using CEWSP_Backend;
+
 namespace CEWSP_v2.Dialogs
 {
     /// <summary>
@@ -188,7 +190,7 @@ namespace CEWSP_v2.Dialogs
             if (m_bProjectCreated)
                 return ProjectName;
             else
-                return Definitions.ConstantDefinitions.CommonValueNone;
+                return CEWSP_Backend.Definitions.ConstantDefinitions.CommonValueNone;
         }
 
         /// <summary>

@@ -10,7 +10,8 @@ using System.IO;
 using OmgUtils.Logging;
 using OmgUtils.ApplicationSettingsManagement;
 
-using CEWSP_v2.Definitions;
+using CEWSP_Backend.Definitions;
+using CEWSP_Backend;
 
 
 namespace CEWSP_v2.Backend

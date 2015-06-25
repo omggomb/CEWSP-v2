@@ -8,6 +8,9 @@ using OmgUtils.Logging;
 using OmgUtils.ApplicationSettingsManagement;
 using System.IO;
 
+using CEWSP_Backend.Definitions;
+using CEWSP_Backend;
+
 namespace CEWSP_v2.Backend
 {
     /// <summary>
@@ -31,11 +34,11 @@ namespace CEWSP_v2.Backend
         {
             get
             {
-                return ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.CEGame).GetValueAsString();
+                return ProjectSettings.GetSetting(CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.CEGame).GetValueAsString();
             }
             set
             {
-                ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.CEGame).SetFromString(value);
+                ProjectSettings.GetSetting(CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.CEGame).SetFromString(value);
             }
 
         }
@@ -47,11 +50,11 @@ namespace CEWSP_v2.Backend
         {
             get
             {
-                return ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.ProjectName).GetValueAsString();
+                return ProjectSettings.GetSetting(CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.ProjectName).GetValueAsString();
             }
             set
             {
-                ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.ProjectName).SetFromString(value);
+                ProjectSettings.GetSetting(CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.ProjectName).SetFromString(value);
             }
         }
 
@@ -62,11 +65,11 @@ namespace CEWSP_v2.Backend
         {
             get
             {
-                return ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.CERoot).GetValueAsString();
+                return ProjectSettings.GetSetting(CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.CERoot).GetValueAsString();
             }
             set
             {
-                ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.CERoot).SetFromString(value);
+                ProjectSettings.GetSetting(CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.CERoot).SetFromString(value);
             }
         }
 
@@ -77,11 +80,11 @@ namespace CEWSP_v2.Backend
         {
             get
             {
-                return ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.ProjectImagePath).GetValueAsString();
+                return ProjectSettings.GetSetting(CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.ProjectImagePath).GetValueAsString();
             }
             set
             {
-                ProjectSettings.GetSetting(Definitions.ProjectSettingsIdentificationNames.ProjectImagePath).SetFromString(value);
+                ProjectSettings.GetSetting(CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.ProjectImagePath).SetFromString(value);
             }
         }
 
@@ -133,7 +136,7 @@ namespace CEWSP_v2.Backend
             // TODO: implement Project::SaveToFolder
             if (String.IsNullOrWhiteSpace(ProjectRootFolder))
             {
-                ProjectRootFolder = Definitions.ConstantDefinitions.RelativeProjectsPath + ProjectName + "\\";
+                ProjectRootFolder = CEWSP_Backend.Definitions.ConstantDefinitions.RelativeProjectsPath + ProjectName + "\\";
             }
             return SaveToFolder(ProjectRootFolder);
         }
@@ -157,7 +160,7 @@ namespace CEWSP_v2.Backend
             // TODO: implement Project::ResetFactoryDefaults
             ProjectSettings.AddSetting(new StringSetting()
                 {
-                    IdentificationName = Definitions.ProjectSettingsIdentificationNames.ProjectName,
+                    IdentificationName = CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.ProjectName,
                     HumanReadableName = Properties.SettingsDesc.HumProjName,
                     Description = Properties.SettingsDesc.DescProjName,
                     Value = "New Project"
@@ -165,7 +168,7 @@ namespace CEWSP_v2.Backend
 
             ProjectSettings.AddSetting(new StringSetting()
             {
-                IdentificationName = Definitions.ProjectSettingsIdentificationNames.CERoot,
+                IdentificationName = CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.CERoot,
                 HumanReadableName = Properties.SettingsDesc.HumProjCERoot,
                 Description = Properties.SettingsDesc.DescProjCERoot,
                 Value = ""
@@ -173,17 +176,17 @@ namespace CEWSP_v2.Backend
 
             ProjectSettings.AddSetting(new StringSetting()
             {
-                IdentificationName = Definitions.ProjectSettingsIdentificationNames.CEGame,
+                IdentificationName = CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.CEGame,
                 HumanReadableName = Properties.SettingsDesc.HumProjGameFolder,
                 Description = Properties.SettingsDesc.DescProjGameFolder,
                 Value = "Game"
             });
 
             ProjectSettings.AddSetting(new StringSetting() {
-                IdentificationName = Definitions.ProjectSettingsIdentificationNames.ProjectImagePath,
+                IdentificationName = CEWSP_Backend.Definitions.ProjectSettingsIdentificationNames.ProjectImagePath,
                 HumanReadableName = Properties.SettingsDesc.HumProjImage,
                 Description = Properties.SettingsDesc.DescProjImage,
-                Value = Definitions.ConstantDefinitions.DefaultProjectImagePath
+                Value = CEWSP_Backend.Definitions.ConstantDefinitions.DefaultProjectImagePath
             });
         }
     }

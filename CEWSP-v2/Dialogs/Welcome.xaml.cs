@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using CEWSP_v2.Backend;
-using CEWSP_v2.Definitions;
+using CEWSP_Backend.Definitions;
 
 namespace CEWSP_v2.Dialogs
 {

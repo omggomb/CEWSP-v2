@@ -69,8 +69,6 @@
     <Compile Include="Analytics\Reason.cs" />
     <Compile Include="Analytics\ReasonList.cs" />
     <Compile Include="Analytics\ValidationRules\ProjectNameValidationRule.cs" />
-    <Compile Include="Backend\CEVersionInfo.cs" />
-    <Compile Include="Backend\GameTemplate.cs" />
     <Compile Include="Backend\Utillities.cs" />
     <Compile Include="Dialogs\AlteredControls\GameTemplateComboItem.cs" />
     <Compile Include="Properties\CreateNewProject.Designer.cs">
@@ -110,8 +108,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Backend\Backend.cs" />
-    <Compile Include="Backend\ConstantDefs.cs" />
-    <Compile Include="Backend\Log.cs" />
     <Compile Include="Backend\Project.cs" />
     <Compile Include="Dialogs\CreateNewProject.xaml.cs">
       <DependentUpon>CreateNewProject.xaml</DependentUpon>
@@ -173,6 +169,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CEWSP-Backend\CEWSP-Backend.csproj">
+      <Project>{89a63a20-467a-4194-8034-f29decefe4e8}</Project>
+      <Name>CEWSP-Backend</Name>
+    </ProjectReference>
     <ProjectReference Include="OmgUtils\OmgUtils.csproj">
       <Project>{bb032932-c16b-4bc4-aa82-8427158a6654}</Project>
       <Name>OmgUtils</Name>
