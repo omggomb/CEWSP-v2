@@ -101,7 +101,7 @@ namespace CEWSP_v2.Backend
         /// Creates a new instance of a project. Only does basic error checking on the parameters
         /// </summary>
         /// <param name="name">The name of the project</param>
-        /// <param name="ceRoot">CE installtion root used for this project</param>
+        /// <param name="ceRoot">CE installation root used for this project</param>
         /// <param name="ceGame">Relative path to the game folder</param>
         public Project(string name, string ceRoot, string ceGame, string imagePath)
             : this()
