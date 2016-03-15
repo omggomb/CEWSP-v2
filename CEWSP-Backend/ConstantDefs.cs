@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CEWSP_Backend.Definitions
+﻿namespace CEWSP_Backend.Definitions
 {
     /// <summary>
     /// This class only defines constants of all sorts
@@ -61,7 +55,6 @@ namespace CEWSP_Backend.Definitions
     /// </summary>
     public class SettingsIdentificationNames
     {
-        
         /// <summary>
         /// Project that was last active before application was closed
         /// </summary>
@@ -83,15 +76,19 @@ namespace CEWSP_Backend.Definitions
         /// Root installation directory of CE for this project
         /// </summary>
         public const string CERoot = "ceRoot";
+
         /// <summary>
         /// Relative path to the game folder used for this project
         /// </summary>
         public const string CEGame = "ceGameFolder";
+
         /// <summary>
         /// The name of the project
         /// </summary>
         public const string ProjectName = "projectName";
 
         public const string ProjectImagePath = "projectImagePath";
+
+        public const string CEEditorRoot = "ceEditorRoot";
     }
 }

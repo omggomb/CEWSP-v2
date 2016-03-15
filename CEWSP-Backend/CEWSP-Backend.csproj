@@ -43,16 +43,47 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\PredefinedReasons\PathContainsNonLatinCharactersReason.cs" />
+    <Compile Include="Analytics\PredefinedReasons\PathContainsSpacesReasong.cs" />
+    <Compile Include="Analytics\PredefinedReasons\PathNonExistentReason.cs" />
+    <Compile Include="Analytics\Reason.cs" />
+    <Compile Include="Analytics\ReasonList.cs" />
+    <Compile Include="Analytics\ValidationRules\BaseValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\CEEditorPathValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\CEGameValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\CEPathValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\CERootPathValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\IValidationRule.cs" />
+    <Compile Include="Analytics\ValidationRules\ProjectNameValidationRule.cs" />
+    <Compile Include="Backend\Backend.cs" />
+    <Compile Include="Backend\Project.cs" />
     <Compile Include="CEVersionInfo.cs" />
     <Compile Include="ConstantDefs.cs" />
     <Compile Include="GameTemplate.cs" />
+    <Compile Include="Exceptions\InvalidCEEditorPathException.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\CreateNewProject.Designer.cs">
+      <DependentUpon>CreateNewProject.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Properties\SettingsDesc.Designer.cs">
+      <DependentUpon>SettingsDesc.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\ValidationReasons.Designer.cs">
+      <DependentUpon>ValidationReasons.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Utillities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CEWSP-v2\OmgUtils\OmgUtils.csproj">
@@ -61,9 +92,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\CreateNewProject.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreateNewProject.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\SettingsDesc.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SettingsDesc.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ValidationReasons.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationReasons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CEWSP_Backend
 {
@@ -16,21 +14,22 @@ namespace CEWSP_Backend
 
     public class GameTemplate
     {
-        DirectoryInfo m_dirInf;
+        private DirectoryInfo m_dirInf;
 
         public string Name { get; set; }
         public string IconPath { get; set; }
         public string DescFilePath { get; set; }
         public List<CEVersionInfo> SupportedVersions { get; set; }
         public List<string> UnknownConfigNames { get; set; }
-        public DirectoryInfo Directory 
+
+        public DirectoryInfo Directory
         {
             get
             {
                 return m_dirInf;
             }
         }
-       
+
         public GameTemplate()
         {
             SupportedVersions = new List<CEVersionInfo>();
@@ -63,7 +62,7 @@ namespace CEWSP_Backend
 
             string sLine = null;
 
-            while (reader.EndOfStream == false) 
+            while (reader.EndOfStream == false)
             {
                 sLine = reader.ReadLine();
 
@@ -75,7 +74,6 @@ namespace CEWSP_Backend
                     IconPath = splitLine[1];
                 else if (splitLine[0] == ConfigValueNames.CompatibleVersions)
                 {
-                    
                     string sVersionsString = splitLine[1];
 
                     if (sVersionsString == "all")
@@ -97,7 +95,6 @@ namespace CEWSP_Backend
             }
 
             return true;
-
         }
     }
 }

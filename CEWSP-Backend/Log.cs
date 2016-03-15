@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-
+﻿using CEWSP_Backend.Definitions;
 using System.Windows;
-using CEWSP_Backend.Definitions;
+using System.Windows.Controls;
 
 namespace CEWSP_Backend
 {
@@ -20,7 +14,6 @@ namespace CEWSP_Backend
         /// </summary>
         public static OmgUtils.Logging.Logger ApplicationLog { get; private set; }
 
-        
         public delegate void OnMessageLoggedDelegate();
 
         /// <summary>
@@ -40,7 +33,6 @@ namespace CEWSP_Backend
             if (!ApplicationLog.Init(ConstantDefinitions.RelativeLogFilePath, tb))
                 return false;
 
-           
             return true;
         }
 
@@ -98,7 +90,7 @@ namespace CEWSP_Backend
             Log.LogWarning("User requested a missing feature: " + sMessage);
 
             MessageBox.Show(sFinalMessage, Properties.Resources.CommonWarning,
-                             MessageBoxButton.OK, MessageBoxImage.Warning);  
+                             MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

@@ -126,8 +126,14 @@
   <data name="BtnCreate" xml:space="preserve">
     <value>Create</value>
   </data>
+  <data name="BtnDefault" xml:space="preserve">
+    <value>Default</value>
+  </data>
   <data name="BtnExit" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="BtnLaunch" xml:space="preserve">
+    <value>Launch</value>
   </data>
   <data name="CommonError" xml:space="preserve">
     <value>Error</value>

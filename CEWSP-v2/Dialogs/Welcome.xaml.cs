@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CEWSP_Backend;
+using CEWSP_Backend.Backend;
+using CEWSP_Backend.Definitions;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-using CEWSP_v2.Backend;
-using CEWSP_Backend.Definitions;
 
 namespace CEWSP_v2.Dialogs
 {
@@ -22,14 +13,12 @@ namespace CEWSP_v2.Dialogs
     /// </summary>
     public partial class Welcome : Window
     {
-        
-
         /// <summary>
         /// Set to true if the exit button was pressed and the application should shut down
         /// </summary>
-        bool m_bExitButtonPressed;
+        private bool m_bExitButtonPressed;
 
-        string m_sProjectToBeLoaded;
+        private string m_sProjectToBeLoaded;
 
         public Welcome()
         {
@@ -50,6 +39,28 @@ namespace CEWSP_v2.Dialogs
             return dia.m_sProjectToBeLoaded;
         }
 
+        /// <summary>
+        /// Adds the project with this name to the list and loads it image.
+        /// </summary>
+        /// <param name="sProjectName"></param>
+        private void AddProjectToList(string sProjectName)
+        {
+            // TODO: AddProjectToList
+#warning Add project image next to text
+            var item = new ListBoxItem() { Content = sProjectName };
+            item.MouseDoubleClick += delegate
+            {
+                m_sProjectToBeLoaded = item.Content as String;
+                Close();
+            };
+            projectListBox.Items.Add(item);
+        }
+
+        private void clearFilterButton_Click(object sender, RoutedEventArgs e)
+        {
+            filterTextBox.Text = "";
+            FilterProjectList("");
+        }
 
         /// <summary>
         /// Since we want enhanced tool tips, we need to create them through code
@@ -75,11 +86,27 @@ namespace CEWSP_v2.Dialogs
         }
 
         /// <summary>
+        /// Fired when the exit button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exitBotton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ShouldClose())
+            {
+                m_bExitButtonPressed = true;
+                Application.Current.Shutdown();
+            }
+        }
+
+        /// <summary>
         /// Create a list entry for each found project or advice the user to create a new one if none
         /// were found
         /// </summary>
         private void FillProjects()
         {
+            projectListBox.Items.Clear();
+
             if (ApplicationBackend.FoundProjectsNames.Count <= 0)
             {
                 // Add message to list box
@@ -107,49 +134,43 @@ namespace CEWSP_v2.Dialogs
             }
         }
 
-        /// <summary>
-        /// Adds the project with this name to the list and loads it image.
-        /// </summary>
-        /// <param name="sProjectName"></param>
-        void AddProjectToList(string sProjectName)
+        private void FilterProjectList(string sFilter)
         {
-            // TODO: AddProjectToList
-            var item = new ListBoxItem() { Content = sProjectName };
-            item.MouseDoubleClick += delegate
-            {
+            projectListBox.Items.Clear();
 
-                m_sProjectToBeLoaded = item.Content as String;
-                Close();
-            };
-            projectListBox.Items.Add(item);
-        }
+            sFilter = sFilter.ToLower();
 
-        /// <summary>
-        /// Fired when the exit button is clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void exitBotton_Click(object sender, RoutedEventArgs e)
-        {
-            if (ShouldClose())
+            foreach (var name in ApplicationBackend.FoundProjectsNames)
             {
-                m_bExitButtonPressed = true;
-                Application.Current.Shutdown();
+                string sNameToLower = name.ToLower();
+                if (sNameToLower.Contains(sFilter))
+                    AddProjectToList(name);
             }
         }
 
-        /// <summary>
-        /// Need to listen for this, since the user could just press the x-Button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void filterTextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            // If the exit button was pressed don't ask the user anymore
-            if (m_bExitButtonPressed)
-                return;
+            FilterProjectList(filterTextBox.Text);
+        }
 
-            e.Cancel = !ShouldClose();
+        private void filterTextBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                filterTextBox.SelectAll();
+                filterTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void newProjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            m_bExitButtonPressed = true;
+
+            m_sProjectToBeLoaded = CreateNewProject.ShowAndReturn().ProjectName;
+
+            ApplicationBackend.LoadProjects();
+            FillProjects();
         }
 
         /// <summary>
@@ -158,7 +179,7 @@ namespace CEWSP_v2.Dialogs
         /// If projects were found, returns true
         /// </summary>
         /// <returns></returns>
-        bool ShouldClose()
+        private bool ShouldClose()
         {
             if (ApplicationBackend.FoundProjectsNames.Count > 0)
                 return true;
@@ -184,52 +205,18 @@ namespace CEWSP_v2.Dialogs
             }
         }
 
-        private void newProjectButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Need to listen for this, since the user could just press the x-Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            m_bExitButtonPressed = true;
+            // If the exit button was pressed don't ask the user anymore
+            if (m_bExitButtonPressed)
+                return;
 
-            m_sProjectToBeLoaded = CreateNewProject.ShowAndReturn();
+            e.Cancel = !ShouldClose();
         }
-
-        private void clearFilterButton_Click(object sender, RoutedEventArgs e)
-        {
-            filterTextBox.Text = "";
-            FilterProjectList("");
-        }
-
-        private void FilterProjectList(string sFilter)
-        {
-            projectListBox.Items.Clear();
-
-            sFilter = sFilter.ToLower();
-
-            foreach (var name in ApplicationBackend.FoundProjectsNames)
-            {
-
-                string sNameToLower = name.ToLower();
-                if (sNameToLower.Contains(sFilter))
-                    AddProjectToList(name);
-            }
-        }
-
-        private void filterTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            FilterProjectList(filterTextBox.Text);
-        }
-
-        private void filterTextBox_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                filterTextBox.SelectAll();
-                filterTextBox.Focus();
-                e.Handled = true;
-            }
-                
-        }
-        
-    
-
-      
     }
 }

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Setting
+    identificationName="projectName"
+    humanReadableName="Project name"
+    description="The name of this project"
+    category=""
+    typeAsString="string"
+    value="Muchj" />
+  <Setting
+    identificationName="ceRoot"
+    humanReadableName="CE Root installtion"
+    description="The root directory of the CE installation used for this project"
+    category=""
+    typeAsString="string"
+    value="E:\Dev\CRYENGINE\358" />
+  <Setting
+    identificationName="ceGameFolder"
+    humanReadableName="Game folder path"
+    description="The root directory of the game folder used for this project"
+    category=""
+    typeAsString="string"
+    value="E:\Dev\CRYENGINE\358\Projji" />
+  <Setting
+    identificationName="projectImagePath"
+    humanReadableName="Project image path"
+    description="The path to the image associated with this project"
+    category=""
+    typeAsString="string"
+    value="/Images/default-project-image.png" />
+  <Setting
+    identificationName="ceEditorRoot"
+    humanReadableName="Sandbox editor location"
+    description="Path to the Sandbox editor"
+    category=""
+    typeAsString="string"
+    value="E:\Dev\CRYENGINE\358\Bin64\Editor.exe" />
+</Settings>

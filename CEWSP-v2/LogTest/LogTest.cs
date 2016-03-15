@@ -1,7 +1,5 @@
-﻿using System;
+﻿using CEWSP_Backend;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using CEWSP_Backend;
 using System.Windows.Controls;
 
 namespace LogTest

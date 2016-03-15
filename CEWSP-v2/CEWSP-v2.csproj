@@ -58,38 +58,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Analytics\ValidationRules\BaseValidationRule.cs" />
-    <Compile Include="Analytics\ValidationRules\CEGameValidationRule.cs" />
-    <Compile Include="Analytics\ValidationRules\CEPathValidationRule.cs" />
-    <Compile Include="Analytics\ValidationRules\CERootPathValidationRule.cs" />
-    <Compile Include="Analytics\ValidationRules\IValidationRule.cs" />
-    <Compile Include="Analytics\PredefinedReasons\PathContainsNonLatinCharactersReason.cs" />
-    <Compile Include="Analytics\PredefinedReasons\PathContainsSpacesReasong.cs" />
-    <Compile Include="Analytics\PredefinedReasons\PathNonExistentReason.cs" />
-    <Compile Include="Analytics\Reason.cs" />
-    <Compile Include="Analytics\ReasonList.cs" />
-    <Compile Include="Analytics\ValidationRules\ProjectNameValidationRule.cs" />
-    <Compile Include="Backend\Utillities.cs" />
     <Compile Include="Dialogs\AlteredControls\GameTemplateComboItem.cs" />
-    <Compile Include="Properties\CreateNewProject.Designer.cs">
+    <Compile Include="Properties\MainWindowResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CreateNewProject.resx</DependentUpon>
+      <DependentUpon>MainWindowResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Welcome.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Welcome.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\SettingsDesc.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SettingsDesc.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\ValidationReasons.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ValidationReasons.resx</DependentUpon>
     </Compile>
     <Page Include="Dialogs\CreateNewProject.xaml">
       <SubType>Designer</SubType>
@@ -107,8 +85,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Backend\Backend.cs" />
-    <Compile Include="Backend\Project.cs" />
     <Compile Include="Dialogs\CreateNewProject.xaml.cs">
       <DependentUpon>CreateNewProject.xaml</DependentUpon>
     </Compile>
@@ -134,9 +110,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\CreateNewProject.resx">
+    <EmbeddedResource Include="Properties\MainWindowResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>CreateNewProject.Designer.cs</LastGenOutput>
+      <LastGenOutput>MainWindowResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -145,14 +121,6 @@
     <EmbeddedResource Include="Properties\Welcome.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Welcome.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\SettingsDesc.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SettingsDesc.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\ValidationReasons.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ValidationReasons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest">
       <SubType>Designer</SubType>
@@ -192,7 +160,7 @@
     <Resource Include="Images\checkmark-icon-64.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="WorkingDir\" />
+    <Resource Include="Images\Cpp-L.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CEWSP_Backend;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using CEWSP_Backend;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Controls;
 
 namespace CEWSP_v2.Backend.Tests
@@ -13,11 +9,22 @@ namespace CEWSP_v2.Backend.Tests
     [TestClass()]
     public class GameTemplateTests
     {
+        private string m_sCurrentDirectory = "";
+
         [TestInitialize()]
-        public void Before()
+        public void BeforeTest()
         {
             var tb = new TextBlock();
             Log.Init(tb);
+
+            m_sCurrentDirectory = Directory.GetCurrentDirectory();
+            Directory.SetCurrentDirectory(@"..\..\..\..\WorkingDir\");
+        }
+
+        [TestCleanup()]
+        public void AfterTest()
+        {
+            Directory.SetCurrentDirectory(m_sCurrentDirectory);
         }
 
         [TestMethod()]
@@ -52,7 +59,6 @@ namespace CEWSP_v2.Backend.Tests
             version.FromString("3.8.1");
             expectedVersions.Add(version);
 
-
             Assert.IsTrue(template.LoadFromFolder(@".\GameTemplates\testTemplate2"));
             Assert.AreEqual(template.Name, "testTemplate2");
             Assert.AreEqual(template.DescFilePath, "defaultDescFile.txt");
@@ -65,7 +71,6 @@ namespace CEWSP_v2.Backend.Tests
             {
                 Assert.IsTrue(expectedVersions[i] == template.SupportedVersions[i]);
             }
-
         }
     }
 }

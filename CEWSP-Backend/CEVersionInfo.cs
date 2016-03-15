@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CEWSP_Backend
 {
@@ -13,10 +10,36 @@ namespace CEWSP_Backend
     /// </summary>
     public class CEVersionInfo
     {
+        private static CEVersionInfo s_eaasMinVersion;
+
+        /// <summary>
+        /// Constructs a new version info object for the given path
+        /// </summary>
+        public CEVersionInfo()
+        {
+        }
+
         /// <summary>
         /// Path to the 64bit executable of CE
         /// </summary>
         public string ExecPath { get; private set; }
+
+        /// <summary>
+        /// Is this version an EaaS version?
+        /// </summary>
+        public bool IsEaaS
+        {
+            get
+            {
+                if (s_eaasMinVersion == null)
+                {
+                    s_eaasMinVersion = new CEVersionInfo();
+                    s_eaasMinVersion.FromString("3.6.10");
+                }
+
+                return (this >= s_eaasMinVersion);
+            }
+        }
 
         /// <summary>
         /// The major version number of this CE (3.8.1 yields 3)
@@ -33,11 +56,29 @@ namespace CEWSP_Backend
         /// </summary>
         public int SubVersion { get; private set; }
 
-        /// <summary>
-        /// Constructs a new version info object for the given path
-        /// </summary>
-        public CEVersionInfo()
+        public void FromFile(string sExecPath)
         {
+            if (sExecPath == null)
+            {
+                throw new ArgumentNullException("sExecPath");
+            }
+
+            CheckPath(sExecPath);
+
+            var info = new FileInfo(sExecPath);
+
+            if (!info.Exists)
+            {
+                throw new ArgumentException("Path is valid but file doesn't exist", "sExecPath");
+            }
+
+            ExecPath = sExecPath;
+
+            var versionInfo = FileVersionInfo.GetVersionInfo(info.FullName);
+
+            MajorVersion = versionInfo.FileMajorPart;
+            MinorVersion = versionInfo.FileMinorPart;
+            SubVersion = versionInfo.FileBuildPart;
         }
 
         public void FromString(string versionString)
@@ -49,7 +90,7 @@ namespace CEWSP_Backend
             {
                 if (!Char.IsDigit(versionString[i]) && !(versionString[i] == '.'))
                 {
-                    throw new ArgumentException("Unexpected character found in CE version string '" 
+                    throw new ArgumentException("Unexpected character found in CE version string '"
                                                 + versionString[i] + "'");
                 }
             }
@@ -58,42 +99,66 @@ namespace CEWSP_Backend
 
             if (split.Count() != 3)
             {
-                throw new ArgumentException("Got more or less than three digits while parsing CE"  + 
+                throw new ArgumentException("Got more or less than three digits while parsing CE" +
                                             "version string (expected e.g. 3.4.5");
             }
 
-            this.MajorVersion = int.Parse(split[0]);
-            this.MinorVersion = int.Parse(split[1]);
-            this.SubVersion = int.Parse(split[2]);
+            MajorVersion = int.Parse(split[0]);
+            MinorVersion = int.Parse(split[1]);
+            SubVersion = int.Parse(split[2]);
         }
 
-        public void FromFile(string sExecPath)
+        #region Operators
+
+        public static bool operator !=(CEVersionInfo inf1, CEVersionInfo inf2)
         {
-            if (sExecPath == null)
+            return !(inf1 == inf2);
+        }
+
+        public static bool operator <(CEVersionInfo inf1, CEVersionInfo inf2)
+        {
+            if (inf1 == inf2)
             {
-                throw new ArgumentNullException("sExecPath");
+                return false;
             }
 
-            this.CheckPath(sExecPath);
-
-            var info = new FileInfo(sExecPath);
-
-            if (!info.Exists)
+            if (inf1.MajorVersion == inf2.MajorVersion)
             {
-                throw new ArgumentException("Path is valid but file doesn't exist", "sExecPath");
+                if (inf1.MinorVersion == inf2.MinorVersion)
+                {
+                    return inf1.SubVersion < inf2.SubVersion;
+                }
+                else
+                {
+                    return inf1.MinorVersion < inf2.MinorVersion;
+                }
             }
+            else
+            {
+                return inf1.MajorVersion < inf2.MajorVersion;
+            }
+        }
 
-            this.ExecPath = sExecPath;
+        public static bool operator <=(CEVersionInfo inf1, CEVersionInfo inf2)
+        {
+            if (inf1 == inf2)
+                return true;
 
-            var versionInfo = FileVersionInfo.GetVersionInfo(info.FullName);
-
-            this.MajorVersion = versionInfo.FileMajorPart;
-            this.MinorVersion = versionInfo.FileMinorPart;
-            this.SubVersion = versionInfo.FileBuildPart;
+            return inf1 < inf2;
         }
 
         public static bool operator ==(CEVersionInfo inf1, CEVersionInfo inf2)
         {
+            if (System.Object.ReferenceEquals(inf1, inf2))
+            {
+                return true;
+            }
+
+            if (Object.Equals(inf1, null) && !Object.Equals(inf2, null))
+                return false;
+            if (Object.Equals(inf2, null) && !Object.Equals(inf1, null))
+                return false;
+
             if ((inf1.MajorVersion == inf2.MajorVersion) &&
                 (inf1.MinorVersion == inf2.MinorVersion) &&
                 (inf1.SubVersion == inf2.SubVersion))
@@ -104,16 +169,63 @@ namespace CEWSP_Backend
             return false;
         }
 
-        public static bool operator !=(CEVersionInfo inf1, CEVersionInfo inf2)
+        public static bool operator >(CEVersionInfo inf1, CEVersionInfo inf2)
         {
-            if ((inf1.MajorVersion != inf2.MajorVersion) ||
-                 (inf1.MinorVersion != inf2.MinorVersion) ||
-                 (inf1.SubVersion != inf2.SubVersion))
+            if (inf1 == inf2)
             {
-                return true;
+                return false;
             }
 
-            return false;
+            if (inf1.MajorVersion == inf2.MajorVersion)
+            {
+                if (inf1.MinorVersion == inf2.MinorVersion)
+                {
+                    return inf1.SubVersion > inf2.SubVersion;
+                }
+                else
+                {
+                    return inf1.MinorVersion > inf2.MinorVersion;
+                }
+            }
+            else
+            {
+                return inf1.MajorVersion > inf2.MajorVersion;
+            }
+        }
+
+        public static bool operator >=(CEVersionInfo inf1, CEVersionInfo inf2)
+        {
+            if (inf1 == inf2)
+                return true;
+
+            return inf1 > inf2;
+        }
+
+        #endregion Operators
+
+        public override string ToString()
+        {
+            return MajorVersion + "." + MinorVersion + "." + SubVersion;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is CEVersionInfo)
+            {
+                return this == (obj as CEVersionInfo);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            int code = 38 + MajorVersion.GetHashCode();
+            code = 38 * code + MinorVersion.GetHashCode();
+            code = 38 * code + SubVersion.GetHashCode();
+            return code;
         }
 
         private void CheckPath(string sExecPath)

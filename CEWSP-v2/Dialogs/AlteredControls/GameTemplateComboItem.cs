@@ -1,17 +1,12 @@
-﻿using CEWSP_v2.Backend;
-using CEWSP_Backend;
+﻿using CEWSP_Backend;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace CEWSP_v2.Dialogs.AlteredControls
 {
-    class GameTemplateComboItem : ComboBoxItem
+    internal class GameTemplateComboItem : ComboBoxItem
     {
         public GameTemplate AssociatedGameTemplate { get; set; }
 
@@ -25,8 +20,12 @@ namespace CEWSP_v2.Dialogs.AlteredControls
                 bitImg = new BitmapImage(new Uri(sImgPath));
 
             var img = new Image() { Width = 64, Height = 64, Source = bitImg };
-            var textB = new TextBlock() { Text = AssociatedGameTemplate.Name, VerticalAlignment = System.Windows.VerticalAlignment.Center,
-                                           Margin = new System.Windows.Thickness(10,0,0,0)};
+            var textB = new TextBlock()
+            {
+                Text = AssociatedGameTemplate.Name,
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                Margin = new System.Windows.Thickness(10, 0, 0, 0)
+            };
 
             stackPanel.Children.Add(img);
             stackPanel.Children.Add(textB);
