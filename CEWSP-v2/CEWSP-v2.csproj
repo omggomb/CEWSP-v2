@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomControls\CommandLineControl.xaml.cs">
+      <DependentUpon>CommandLineControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AlteredControls\GameTemplateComboItem.cs" />
     <Compile Include="Properties\MainWindowResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -69,6 +72,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Welcome.resx</DependentUpon>
     </Compile>
+    <Page Include="CustomControls\CommandLineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\CreateNewProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cpp-L.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

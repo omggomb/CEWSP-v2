@@ -4,6 +4,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:p="clr-namespace:CEWSP_v2.Properties"
         xmlns:be="clr-namespace:CEWSP_Backend.Properties;assembly=CEWSP-Backend"
+              xmlns:cc="clr-namespace:CEWSP_v2.CustomControls"
         Title="MainWindow" MinHeight="768" MinWidth="1024" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,17 +17,13 @@
             <RowDefinition Height="49*" />
             <RowDefinition Height="23*" />
         </Grid.RowDefinitions>
-        <Ribbon Grid.ColumnSpan="2">
+        <Ribbon Grid.ColumnSpan="2" Height="Auto">
             <RibbonTab Header="{x:Static p:MainWindowResources.TabWork}">
                 <!-- Editor group -->
                 <RibbonGroup Header="{x:Static p:MainWindowResources.GroubEditor}">
                     <!-- 64bit editor -->
                     <RibbonMenuButton LargeImageSource="/Images/default-project-image.png" Label="{x:Static p:MainWindowResources.LblEditor64Bit}">
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="{x:Static p:MainWindowResources.LblCommandline}" />
-                            <TextBox MinWidth="300" />
-                            <Button Content="{x:Static be:Resources.BtnLaunch}" />
-                        </StackPanel>
+                        <cc:CommandLineControl CommandLineType="eCT_Editor32" />
                     </RibbonMenuButton>
                     <RibbonButton SmallImageSource="/images/default-project-image.png" Label="{x:Static be:Resources.BtnDefault}" />
                     <RibbonButton SmallImageSource="/images/default-project-image.png" Label="{x:Static p:MainWindowResources.BtnLastUsed}" />
@@ -42,7 +39,7 @@
                 <!-- Code group -->
                 <RibbonGroup Header="{x:Static p:MainWindowResources.GroupCode}">
                     <!-- C++ -->
-                    <RibbonButton Content="/Images/Cpp-L.xaml" Label="{x:Static p:MainWindowResources.BtnCpp}" />
+                    <RibbonButton LargeImageSource="/Images/Cpp-L.png" Label="{x:Static p:MainWindowResources.BtnCpp}" />
                     <!-- lua -->
                     <RibbonButton LargeImageSource="/Images/default-project-image.png" Label="{x:Static p:MainWindowResources.BtnLua}" />
                 </RibbonGroup>
@@ -54,7 +51,7 @@
             </RibbonTab>
             <RibbonTab Header="{x:Static p:MainWindowResources.TabManage}">
             </RibbonTab>
-            <RibbonTab Header="{x:Static p:MainWindowResources.TabDeploy}">
+            <RibbonTab Header="{x:Static p:MainWindowResources.TabDeploy}" Margin="35,87,-35,-87">
             </RibbonTab>
         </Ribbon>
         <ScrollViewer x:Name="logScrollViewer" Margin="10,10,10,7" Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2">

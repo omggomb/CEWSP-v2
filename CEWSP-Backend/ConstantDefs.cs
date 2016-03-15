@@ -48,6 +48,11 @@
         /// Name of category "Startup" inside the global settings
         /// </summary>
         public const string GlobalSettingsCategoryStartup = "Startup";
+
+        /// <summary>
+        /// Name of category "Programs" inside the global settings
+        /// </summary>
+        public const string GlobalSettingsPrograms = "Programs";
     }
 
     /// <summary>
@@ -65,6 +70,11 @@
         /// last used project will be loaded at startup.
         /// </summary>
         public const string SetShowWelcomeWindow = "showWelcomeWindow";
+
+        /// <summary>
+        /// Last used commandline arguments for the 64bit editor
+        /// </summary>
+        public const string SetLastUsedEd64CommandLine = "lastUsedEd64Commandline";
     }
 
     /// <summary>

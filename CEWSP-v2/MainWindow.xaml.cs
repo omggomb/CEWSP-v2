@@ -73,6 +73,7 @@ namespace CEWSP_v2
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Log.LogInfo("Application closing down...");
+            ApplicationBackend.Shutdown();
         }
 
         /// <summary>

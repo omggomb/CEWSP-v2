@@ -120,6 +120,9 @@
   <data name="DescCEEditorRoot" xml:space="preserve">
     <value>Path to the Sandbox editor</value>
   </data>
+  <data name="DescLastUsedEd64CommandLine" xml:space="preserve">
+    <value>Last used commandline arguments for the 64bit editor</value>
+  </data>
   <data name="DescLastUsedProject" xml:space="preserve">
     <value>The project that was active when CEWSP was closed</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="HumCEEditorRoot" xml:space="preserve">
     <value>Sandbox editor location</value>
+  </data>
+  <data name="HumLastUsedEd64CommandLine" xml:space="preserve">
+    <value>Last used editor 64bit commandline</value>
   </data>
   <data name="HumLastUsedProject" xml:space="preserve">
     <value>Last active project</value>

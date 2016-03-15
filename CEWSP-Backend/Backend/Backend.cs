@@ -11,20 +11,35 @@ namespace CEWSP_Backend.Backend
     /// </summary>
     public static class ApplicationBackend
     {
+        static ApplicationBackend()
+        {
+            FoundProjectsNames = new List<string>();
+            FoundGameTemplates = new List<GameTemplate>();
+        }
+
+        public static List<GameTemplate> FoundGameTemplates { get; private set; }
+
+        public static List<string> FoundProjectsNames { get; private set; }
+
         /// <summary>
         /// Global settings that apply to the whole application
         /// </summary>
         public static SettingsManager GlobalSettings { get; private set; }
 
-        public static List<string> FoundProjectsNames { get; private set; }
-
-        public static List<GameTemplate> FoundGameTemplates { get; private set; }
         internal static Project ActiveProject { get; private set; }
 
-        static ApplicationBackend()
+        public static ProjectOutData CreateNewProject(ProjectInData projectData)
         {
-            FoundProjectsNames = new List<string>();
-            FoundGameTemplates = new List<GameTemplate>();
+            var project = new Project(projectData);
+
+            project.SaveToFolder();
+
+            if (!Directory.Exists(projectData.ProjectGameRoot))
+            {
+                Directory.CreateDirectory(projectData.ProjectGameRoot);
+            }
+
+            return project.GetProjectInformation();
         }
 
         /// <summary>
@@ -55,51 +70,11 @@ namespace CEWSP_Backend.Backend
         }
 
         /// <summary>
-        /// Loads the application level settings
+        /// Shuts down any backend specific services and save the global settings to file.
         /// </summary>
-        /// <returns>True on success</returns>
-        private static bool LoadGlobalSettings()
+        public static void Shutdown()
         {
-            Log.LogInfo("Loading global settings...");
-            GlobalSettings = new SettingsManager(Log.ApplicationLog);
-
-            FactoryResetGlobalSettings();
-
-            // First, check if file exists
-            // if not
-            if (!File.Exists(ConstantDefinitions.RelativeGlobalSettingsPath))
-            {
-                // Create and save
-                string sDirPath = OmgUtils.Path.PathUtils.GetFilePath(ConstantDefinitions.RelativeGlobalSettingsPath);
-                Directory.CreateDirectory(sDirPath);
-                return GlobalSettings.SaveSettings(ConstantDefinitions.RelativeGlobalSettingsPath);
-            }
-
-            // File exists...load
-            return GlobalSettings.LoadSettingsFromFile(ConstantDefinitions.RelativeGlobalSettingsPath);
-        }
-
-        private static void FactoryResetGlobalSettings()
-        {
-            // Last active project
-            GlobalSettings.AddSetting(new StringSetting()
-            {
-                IdentificationName = SettingsIdentificationNames.SetLastUsedProject,
-                Category = SettingsCategoryNames.GlobalSettingsCategoryProjects,
-                Description = Properties.SettingsDesc.DescLastUsedProject,
-                HumanReadableName = Properties.SettingsDesc.HumLastUsedProject,
-                Value = ConstantDefinitions.CommonValueNone
-            });
-
-            // Show welcome window
-            GlobalSettings.AddSetting(new BoolSetting()
-            {
-                IdentificationName = SettingsIdentificationNames.SetShowWelcomeWindow,
-                Category = SettingsCategoryNames.GlobalSettingsCategoryStartup,
-                Description = Properties.SettingsDesc.DescShowWelcomeWindow,
-                HumanReadableName = Properties.SettingsDesc.HumShowWelcomeWindow,
-                Value = true
-            });
+            GlobalSettings.SaveSettings();
         }
 
         /// <summary>
@@ -154,6 +129,42 @@ namespace CEWSP_Backend.Backend
             }
         }
 
+        private static void FactoryResetGlobalSettings()
+        {
+            // Last active project
+            GlobalSettings.AddSetting(new StringSetting()
+            {
+                IdentificationName = SettingsIdentificationNames.SetLastUsedProject,
+                Category = SettingsCategoryNames.GlobalSettingsCategoryProjects,
+                Description = Properties.SettingsDesc.DescLastUsedProject,
+                HumanReadableName = Properties.SettingsDesc.HumLastUsedProject,
+                Value = ConstantDefinitions.CommonValueNone
+            });
+
+            // Show welcome window
+            GlobalSettings.AddSetting(new BoolSetting()
+            {
+                IdentificationName = SettingsIdentificationNames.SetShowWelcomeWindow,
+                Category = SettingsCategoryNames.GlobalSettingsCategoryStartup,
+                Description = Properties.SettingsDesc.DescShowWelcomeWindow,
+                HumanReadableName = Properties.SettingsDesc.HumShowWelcomeWindow,
+                Value = true
+            });
+
+            #region CommandLineStuff
+
+            GlobalSettings.AddSetting(new StringSetting()
+            {
+                IdentificationName = SettingsIdentificationNames.SetLastUsedEd64CommandLine,
+                Category = SettingsCategoryNames.GlobalSettingsPrograms,
+                Description = Properties.SettingsDesc.DescLastUsedEd64CommandLine,
+                HumanReadableName = Properties.SettingsDesc.HumLastUsedEd64CommandLine,
+                Value = ConstantDefinitions.CommonValueNone,
+            });
+
+            #endregion CommandLineStuff
+        }
+
         private static void LoadGameTemplates()
         {
             Log.LogInfo("Loading game templates...");
@@ -191,18 +202,29 @@ namespace CEWSP_Backend.Backend
             }
         }
 
-        public static ProjectOutData CreateNewProject(ProjectInData projectData)
+        /// <summary>
+        /// Loads the application level settings
+        /// </summary>
+        /// <returns>True on success</returns>
+        private static bool LoadGlobalSettings()
         {
-            var project = new Project(projectData);
+            Log.LogInfo("Loading global settings...");
+            GlobalSettings = new SettingsManager(Log.ApplicationLog);
 
-            project.SaveToFolder();
+            FactoryResetGlobalSettings();
 
-            if (!Directory.Exists(projectData.ProjectGameRoot))
+            // First, check if file exists
+            // if not
+            if (!File.Exists(ConstantDefinitions.RelativeGlobalSettingsPath))
             {
-                Directory.CreateDirectory(projectData.ProjectGameRoot);
+                // Create and save
+                string sDirPath = OmgUtils.Path.PathUtils.GetFilePath(ConstantDefinitions.RelativeGlobalSettingsPath);
+                Directory.CreateDirectory(sDirPath);
+                return GlobalSettings.SaveSettings(ConstantDefinitions.RelativeGlobalSettingsPath);
             }
 
-            return project.GetProjectInformation();
+            // File exists...load
+            return GlobalSettings.LoadSettingsFromFile(ConstantDefinitions.RelativeGlobalSettingsPath);
         }
     }
 }

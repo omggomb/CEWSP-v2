@@ -70,6 +70,15 @@ namespace CEWSP_Backend.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last used commandline arguments for the 64bit editor.
+        /// </summary>
+        public static string DescLastUsedEd64CommandLine {
+            get {
+                return ResourceManager.GetString("DescLastUsedEd64CommandLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The project that was active when CEWSP was closed.
         /// </summary>
         public static string DescLastUsedProject {
@@ -129,6 +138,15 @@ namespace CEWSP_Backend.Properties {
         public static string HumCEEditorRoot {
             get {
                 return ResourceManager.GetString("HumCEEditorRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last used editor 64bit commandline.
+        /// </summary>
+        public static string HumLastUsedEd64CommandLine {
+            get {
+                return ResourceManager.GetString("HumLastUsedEd64CommandLine", resourceCulture);
             }
         }
         
