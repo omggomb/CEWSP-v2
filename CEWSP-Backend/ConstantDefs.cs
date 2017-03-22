@@ -32,6 +32,37 @@
         /// Path to the default image used for projects
         /// </summary>
         public const string DefaultProjectImagePath = "./Images/default-project-image.png";
+
+        /// <summary>
+        /// Relative path to lmbr exe
+        /// </summary>
+        public const string LmbrExeRelativePath = @".\Tools\LmbrSetup\Win\lmbr.exe";
+
+        /// <summary>
+        /// Command to retrieve active project from lmbr.exe
+        /// </summary>
+        public const string LmbrExeGetActiveProjectCmd = "projects get-active";
+
+        /// <summary>
+        /// Generic string output by lmbr.exe for each line it writes
+        /// </summary>
+        public const string LmbrExeOutputTrimStart = "lyzard: ";
+
+        /// <summary>
+        /// Command to make lmbr.exe check if Visual Studio 2013 is used
+        /// </summary>
+        public const string LmbrExeCheckVS120Cmd = "capabilities istagset vc120";
+
+        /// <summary>
+        /// Command to make lmbr.exe check if Visual Studio 2013 is used
+        /// </summary>
+        public const string LmbrExeCheckVS140Cmd = "capabilities istagset vc140";
+        public const string VisualSuffixVS120 = "vc120";
+        public const string VisualSuffixVS140 = "vc140";
+        public const string LYSetupAssistantRelativePath = ".\\Tools\\LmbrSetup\\Win\\SetupAssistant.exe";
+        public const string ProjectManagerRelativePath = ".\\Tools\\LmbrSetup\\Win\\ProjectConfigurator.exe";
+        public const string LmbWafRelativePath = ".\\lmbr_waf.bat";
+        public const string LmbrWafConfigureCommand = "configure";
     }
 
     /// <summary>
@@ -75,6 +106,12 @@
         /// Last used commandline arguments for the 64bit editor
         /// </summary>
         public const string SetLastUsedEd64CommandLine = "lastUsedEd64Commandline";
+
+        /// <summary>
+        /// Installation directory of LY
+        /// </summary>
+        public const string SetLYRoot = "lyRoot";
+        public const string SetVisualSuffix = "visualSuffix";
     }
 
     /// <summary>

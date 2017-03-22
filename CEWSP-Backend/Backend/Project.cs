@@ -140,12 +140,12 @@ namespace CEWSP_Backend.Backend
         {
             get
             {
-                return (string)ProjectSettings[ProjectSettingsIdentificationNames.CEEditorRoot];
+                return ProjectSettings.GetSetting(ProjectSettingsIdentificationNames.CEEditorRoot).GetValueAsString();
             }
             set
             {
                 CEVersion.FromFile(value);
-                ProjectSettings[ProjectSettingsIdentificationNames.CEEditorRoot].SetFromString(value);
+                ProjectSettings.GetSetting(ProjectSettingsIdentificationNames.CEEditorRoot).SetFromString(value);
             }
         }
 
@@ -241,7 +241,7 @@ namespace CEWSP_Backend.Backend
                 var dirInfo = new DirectoryInfo(sPath);
                 ProjectRootFolder = dirInfo.FullName;
 
-                Log.LogInfo("Successfully loaded profile: " + (string)ProjectSettings[ProjectSettingsIdentificationNames.ProjectName]);
+                Log.LogInfo("Successfully loaded profile: " + ProjectSettings.GetSetting(ProjectSettingsIdentificationNames.ProjectName).GetValueAsString());
             }
 
             return bSuccess;

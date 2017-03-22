@@ -126,6 +126,9 @@
   <data name="DescLastUsedProject" xml:space="preserve">
     <value>The project that was active when CEWSP was closed</value>
   </data>
+  <data name="DescLYRoot" xml:space="preserve">
+    <value>The root directory in which LY was installed (contains 'dev')</value>
+  </data>
   <data name="DescProjCERoot" xml:space="preserve">
     <value>The root directory of the CE installation used for this project</value>
   </data>
@@ -150,6 +153,9 @@
   <data name="HumLastUsedProject" xml:space="preserve">
     <value>Last active project</value>
   </data>
+  <data name="HumLYRoot" xml:space="preserve">
+    <value>LY installation directory</value>
+  </data>
   <data name="HumProCERoot" xml:space="preserve">
     <value>The path to the Bin64\Editor.exe file of t</value>
   </data>
@@ -167,5 +173,11 @@
   </data>
   <data name="HumShowWelcomeWindow" xml:space="preserve">
     <value>Show welcome window on startup</value>
+  </data>
+  <data name="DescVisualSuffix" xml:space="preserve">
+    <value>String indicating which Visual Studio version is used (either vs120 or vs140)</value>
+  </data>
+  <data name="HumVisualSuffix" xml:space="preserve">
+    <value>Visual Studio suffix</value>
   </data>
 </root>

@@ -1,1 +1,0 @@
-This does not alter any files. You can still configure advanced options.

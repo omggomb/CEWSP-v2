@@ -88,6 +88,15 @@ namespace CEWSP_Backend.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The root directory in which LY was installed (contains &apos;dev&apos;).
+        /// </summary>
+        public static string DescLYRoot {
+            get {
+                return ResourceManager.GetString("DescLYRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The root directory of the CE installation used for this project.
         /// </summary>
         public static string DescProjCERoot {
@@ -133,6 +142,15 @@ namespace CEWSP_Backend.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to String indicating which Visual Studio version is used (either vs120 or vs140).
+        /// </summary>
+        public static string DescVisualSuffix {
+            get {
+                return ResourceManager.GetString("DescVisualSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sandbox editor location.
         /// </summary>
         public static string HumCEEditorRoot {
@@ -156,6 +174,15 @@ namespace CEWSP_Backend.Properties {
         public static string HumLastUsedProject {
             get {
                 return ResourceManager.GetString("HumLastUsedProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LY installation directory.
+        /// </summary>
+        public static string HumLYRoot {
+            get {
+                return ResourceManager.GetString("HumLYRoot", resourceCulture);
             }
         }
         
@@ -210,6 +237,15 @@ namespace CEWSP_Backend.Properties {
         public static string HumShowWelcomeWindow {
             get {
                 return ResourceManager.GetString("HumShowWelcomeWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visual Studio suffix.
+        /// </summary>
+        public static string HumVisualSuffix {
+            get {
+                return ResourceManager.GetString("HumVisualSuffix", resourceCulture);
             }
         }
     }

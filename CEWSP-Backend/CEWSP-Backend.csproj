@@ -34,6 +34,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,12 +57,14 @@
     <Compile Include="Analytics\ValidationRules\IValidationRule.cs" />
     <Compile Include="Analytics\ValidationRules\ProjectNameValidationRule.cs" />
     <Compile Include="Backend\Backend.cs" />
+    <Compile Include="Backend\LYProject.cs" />
     <Compile Include="Backend\Project.cs" />
     <Compile Include="CEVersionInfo.cs" />
     <Compile Include="ConstantDefs.cs" />
     <Compile Include="GameTemplate.cs" />
     <Compile Include="Exceptions\InvalidCEEditorPathException.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="ProcessUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CreateNewProject.Designer.cs">
       <DependentUpon>CreateNewProject.resx</DependentUpon>

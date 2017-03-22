@@ -41,14 +41,6 @@ namespace CEWSP_v2.CustomControls
                     ApplicationBackend.Start64bitEditor(sCommandLine);
                     break;
 
-                case ECommandLineType.eCT_Editor32:
-                    ApplicationBackend.Start32bitEditor(sCommandLine);
-                    break;
-
-                case ECommandLineType.eCT_Game32:
-                    ApplicationBackend.Start32bitGame(sCommandLine);
-                    break;
-
                 case ECommandLineType.eCT_Game64:
                     ApplicationBackend.Start64bitGame(sCommandLine);
                     break;

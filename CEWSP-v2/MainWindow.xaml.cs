@@ -5,6 +5,7 @@ using OmgUtils.ApplicationSettingsManagement;
 using System;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Ribbon;
 
 namespace CEWSP_v2
@@ -14,7 +15,7 @@ namespace CEWSP_v2
     /// </summary>
     public partial class MainWindow : RibbonWindow
     {
-        public ProjectOutData ActiveProject { get; private set; }
+        public LYProjectOutData ActiveProject { get; private set; }
 
         public MainWindow()
         {
@@ -26,6 +27,8 @@ namespace CEWSP_v2
             InitLog();
 
             InitBackend();
+
+         
 
             InitWindow();
         }
@@ -81,32 +84,56 @@ namespace CEWSP_v2
         /// </summary>
         private void InitWindow()
         {
-            var shouldShowWelcomeWindow = ApplicationBackend.GlobalSettings.GetSetting(SettingsIdentificationNames.SetShowWelcomeWindow) as BoolSetting;
-
-            string sProjectToBeLoaded = ConstantDefinitions.CommonValueNone;
-
-            if (ApplicationBackend.FoundProjectsNames.Count == 0 ||
-                shouldShowWelcomeWindow.Value == true)
-            {
-                sProjectToBeLoaded = Dialogs.Welcome.ShowAndReturn();
-            }
-
-            if (sProjectToBeLoaded != CEWSP_Backend.Definitions.ConstantDefinitions.CommonValueNone)
-            {
-                LoadProject(sProjectToBeLoaded);
-            }
+            LoadProject();
+            UpdateUI();
         }
 
-        private void LoadProject(string sProjectToBeLoaded)
+        private void LoadProject()
         {
-            ActiveProject = ApplicationBackend.LoadProject(sProjectToBeLoaded);
-            ApplicationBackend.GlobalSettings[SettingsIdentificationNames.SetLastUsedProject].SetFromString(ActiveProject.ProjectName);
-            UpdateUI();
+            ActiveProject = ApplicationBackend.GetActiveProject();
         }
 
         private void UpdateUI()
         {
-            //throw new NotImplementedException();
+            string lyRoot = ActiveProject.LYRoot;
+            explorerView1.WatchDir = lyRoot;
+            explorerView1.InitializeTree(new CustomControls.ExplorerItemFactory());
+        }
+
+        private void OpenCodeSolutionClicked(object sender, RoutedEventArgs e)
+        {
+            ApplicationBackend.OpenCodeSolution();
+        }
+
+        private void OnOpenSetupAssistantClicked(object sender, RoutedEventArgs e)
+        {
+            ApplicationBackend.OpenSetupAssistant();
+        }
+
+        private void OnOpenProjectManagerClicked(object sender, RoutedEventArgs e)
+        {
+            ApplicationBackend.OpenProjectManager();
+        }
+
+        private void OnLmbrWafConfigureClicked(object sender, RoutedEventArgs e)
+        {
+            ApplicationBackend.RunLmbrWafConfigure();
+        }
+
+        private void OnAddNewExplorerTabClicked(object sender, RoutedEventArgs e)
+        {
+            var treeView = new ExplorerTreeView.ExplorerTreeViewControl();
+            var grid = new Grid();
+
+            grid.Children.Add(treeView);
+
+            var item = new TabItem();
+            item.Content = grid;
+
+            tabView.Items.Insert(tabView.Items.Count - 1, item);
+
+            treeView.WatchDir = ActiveProject.LYRoot + "\\..";
+            treeView.InitializeTree(new CustomControls.ExplorerItemFactory()); 
         }
     }
 }

@@ -40,5 +40,32 @@ namespace CEWSP_Backend.Tests
         {
             var dir = Utillities.GetCERootFromEditor("Hello");
         }
+
+        [TestMethod()]
+        public void TrimLmbrExeOutputValidString()
+        {
+            var testOutput = "lyzard: SomeOutput\nlyzard: Other output\nlyzard: ";
+
+            var result = Utillities.TrimLmbrExeOutput(testOutput);
+
+            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual("SomeOutput", result[0]);
+            Assert.AreEqual("Other output", result[1]);
+            Assert.AreEqual("", result[2]);
+        }
+
+        [TestMethod]
+        public void TrimLmbrExeOutputNullOrEmpty()
+        {
+            string stringOne = null;
+            var stringTwo = "";
+
+            var restult = Utillities.TrimLmbrExeOutput(stringOne);
+
+            Assert.AreEqual(0, restult.Count);
+
+            restult = Utillities.TrimLmbrExeOutput(stringTwo);
+            Assert.AreEqual(0, restult.Count);
+        }
     }
 }

@@ -106,6 +106,15 @@ namespace CEWSP_v2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Engine.
+        /// </summary>
+        public static string GroupEngine {
+            get {
+                return ResourceManager.GetString("GroupEngine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game.
         /// </summary>
         public static string GroupGame {
@@ -120,6 +129,24 @@ namespace CEWSP_v2.Properties {
         public static string GroupProgram {
             get {
                 return ResourceManager.GetString("GroupProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string GroupProject {
+            get {
+                return ResourceManager.GetString("GroupProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project and engine.
+        /// </summary>
+        public static string GroupProjectEngine {
+            get {
+                return ResourceManager.GetString("GroupProjectEngine", resourceCulture);
             }
         }
         
@@ -147,6 +174,33 @@ namespace CEWSP_v2.Properties {
         public static string LblEditor64Bit {
             get {
                 return ResourceManager.GetString("LblEditor64Bit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run configure.
+        /// </summary>
+        public static string LblLmbrWafConfigure {
+            get {
+                return ResourceManager.GetString("LblLmbrWafConfigure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Manager.
+        /// </summary>
+        public static string LblProjectManager {
+            get {
+                return ResourceManager.GetString("LblProjectManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup Assistant.
+        /// </summary>
+        public static string LblSetupAssistant {
+            get {
+                return ResourceManager.GetString("LblSetupAssistant", resourceCulture);
             }
         }
         

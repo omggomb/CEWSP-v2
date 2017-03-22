@@ -132,11 +132,20 @@
   <data name="GroupCode" xml:space="preserve">
     <value>Code</value>
   </data>
+  <data name="GroupEngine" xml:space="preserve">
+    <value>Engine</value>
+  </data>
   <data name="GroupGame" xml:space="preserve">
     <value>Game</value>
   </data>
   <data name="GroupProgram" xml:space="preserve">
     <value>Program</value>
+  </data>
+  <data name="GroupProject" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="GroupProjectEngine" xml:space="preserve">
+    <value>Project and engine</value>
   </data>
   <data name="LblCommandline" xml:space="preserve">
     <value>Commandline:</value>
@@ -146,6 +155,15 @@
   </data>
   <data name="LblEditor64Bit" xml:space="preserve">
     <value>64bit Editor</value>
+  </data>
+  <data name="LblLmbrWafConfigure" xml:space="preserve">
+    <value>Run configure</value>
+  </data>
+  <data name="LblProjectManager" xml:space="preserve">
+    <value>Project Manager</value>
+  </data>
+  <data name="LblSetupAssistant" xml:space="preserve">
+    <value>Setup Assistant</value>
   </data>
   <data name="TabCreate" xml:space="preserve">
     <value>Create</value>

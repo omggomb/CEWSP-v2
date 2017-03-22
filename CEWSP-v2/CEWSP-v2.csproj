@@ -61,6 +61,7 @@
     <Compile Include="CustomControls\CommandLineControl.xaml.cs">
       <DependentUpon>CommandLineControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\ExplorerItemFactory.cs" />
     <Compile Include="Dialogs\AlteredControls\GameTemplateComboItem.cs" />
     <Compile Include="Properties\MainWindowResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -147,6 +148,10 @@
     <ProjectReference Include="..\CEWSP-Backend\CEWSP-Backend.csproj">
       <Project>{89a63a20-467a-4194-8034-f29decefe4e8}</Project>
       <Name>CEWSP-Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="ExplorerTreeViewControl\ExplorerTreeView.csproj">
+      <Project>{79810a14-6959-4d1c-a158-c75f20520b94}</Project>
+      <Name>ExplorerTreeView</Name>
     </ProjectReference>
     <ProjectReference Include="OmgUtils\OmgUtils.csproj">
       <Project>{bb032932-c16b-4bc4-aa82-8427158a6654}</Project>

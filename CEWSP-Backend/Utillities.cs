@@ -1,6 +1,10 @@
 ﻿using CEWSP_Backend.Analytics;
+using CEWSP_Backend.Backend;
+using CEWSP_Backend.Definitions;
 using CEWSP_Backend.Exceptions;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Controls;
@@ -16,6 +20,8 @@ namespace CEWSP_Backend
         private static BitmapImage m_warningBitmap;
         private static BitmapImage m_infoBitmap;
         private static BitmapImage m_defaultProjectBitmap;
+
+        private static string m_workingDir;
 
         public static int ToolTipIconWidth { get; set; }
 
@@ -165,6 +171,16 @@ namespace CEWSP_Backend
             return tip;
         }
 
+        internal static void StartProcessFromLYRootNoReturn(string path, string arguments = "")
+        {
+            string currentDir = Directory.GetCurrentDirectory();
+            string lyRoot = ApplicationBackend.GlobalSettings.GetSetting(SettingsIdentificationNames.SetLYRoot).GetValueAsString();
+
+            Directory.SetCurrentDirectory(lyRoot);
+            Process.Start(path, arguments);
+            Directory.SetCurrentDirectory(currentDir);
+        }
+
         public static Popup CreateIssueToolTip(ReasonList reasons)
         {
             var tip = new Popup();
@@ -266,6 +282,104 @@ namespace CEWSP_Backend
             }
 
             return tip;
+        }
+
+        /// <summary>
+        /// Splits the output of lmbr 
+        /// </summary>
+        /// <param name="sInput"></param>
+        /// <returns></returns>
+        public static List<string> TrimLmbrExeOutput(string sInput)
+        {
+            var list = new List<string>();
+            if (string.IsNullOrEmpty(sInput) || string.IsNullOrWhiteSpace(sInput))
+            {
+                return list;
+            }
+
+            var strings = sInput.Split('\n');
+
+            foreach(var element in strings)
+            {
+                var index = element.IndexOf(ConstantDefinitions.LmbrExeOutputTrimStart);
+
+                if (index != -1)
+                {
+                    index += ConstantDefinitions.LmbrExeOutputTrimStart.Length;
+
+                    var line = element.Substring(index, element.Length - index).Trim();
+
+                    list.Add(line);
+                }
+            }
+
+            return list;
+
+        }
+
+        /// <summary>
+        /// Starts a process with the LY root directory set as working directory and no window created
+        /// </summary>
+        /// <param name="path">Path to the process or file</param>
+        /// <param name="args">Arguments to be passed to the process</param>
+        /// <param name="errorOut">Optional errorout hook</param>
+        /// <returns>The standard output as a string</returns>
+        public static string StartProcessNoWindowFromLYRoot(string path, string args, out StreamReader errorOut)
+        {
+            var process = new Process();
+
+            process.StartInfo = new ProcessStartInfo()
+            {
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                FileName = path,
+                Arguments = args,
+                CreateNoWindow = true,
+            };
+
+           
+            process.StartInfo.RedirectStandardError = true;
+            // TODO: Fix me
+            errorOut = null;
+           
+
+            string currentWorkingDir = Directory.GetCurrentDirectory();
+
+            string lyRoot = ApplicationBackend.GlobalSettings.GetSetting(SettingsIdentificationNames.SetLYRoot).GetValueAsString();
+
+            Directory.SetCurrentDirectory(lyRoot);
+
+            process.Start();
+            process.WaitForExit();
+
+            Directory.SetCurrentDirectory(currentWorkingDir);
+
+            return process.StandardOutput.ReadToEnd();
+
+        }
+
+        /// <summary>
+        /// Starts a process with the LY root directory set as working directory and no window created
+        /// </summary>
+        /// <param name="path">Path to the process or file</param>
+        /// <param name="args">Arguments to be passed to the process</param>
+        /// <param name="errorOut">Optional errorout hook</param>
+        /// <returns>The standard output as a string</returns>
+        public static string StartProcessNoWindowFromLYRoot(string path, string args = "")
+        {
+            StreamReader stdOutDummy;
+            return StartProcessNoWindowFromLYRoot(path, args, out stdOutDummy);
+        }
+
+        public static void HoldWorkingDirAndSetToLYRoot()
+        {
+            m_workingDir = Directory.GetCurrentDirectory();
+            Directory.SetCurrentDirectory(ApplicationBackend.GlobalSettings.GetSetting(SettingsIdentificationNames.SetLYRoot).GetValueAsString());
+        }
+
+        public static void RestoreWorkingDir()
+        {
+            Directory.SetCurrentDirectory(m_workingDir);
         }
     }
 }

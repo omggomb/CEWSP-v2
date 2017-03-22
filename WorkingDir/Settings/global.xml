@@ -1,17 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Settings>
   <Setting
-    identificationName="lastUsedProject"
-    humanReadableName="Last active project"
-    description="The project that was active when CEWSP was closed"
-    category="Projects"
-    typeAsString="string"
-    value="Swag" />
-  <Setting
     identificationName="showWelcomeWindow"
     humanReadableName="Show welcome window on startup"
     description="Should the welcome window be shown on startup"
     category="Startup"
     typeAsString="bool"
-    value="False" />
+    value="True" />
+  <Setting
+    identificationName="lyRoot"
+    humanReadableName="LY installation directory"
+    description="The root directory in which LY was installed (contains 'dev')"
+    category="Startup"
+    typeAsString="string"
+    value="d:\Amazon\Lumberyard\1.8.0.0\dev" />
+  <Setting
+    identificationName="lastUsedEd64Commandline"
+    humanReadableName="Last used editor 64bit commandline"
+    description="Last used commandline arguments for the 64bit editor"
+    category="Programs"
+    typeAsString="string"
+    value="" />
+  <Setting
+    identificationName="visualSuffix"
+    humanReadableName="Visual Studio suffix"
+    description="String indicating which Visual Studio version is used (either vs120 or vs140)"
+    category="Programs"
+    typeAsString="string"
+    value="vc140" />
 </Settings>
