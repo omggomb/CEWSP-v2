@@ -64,22 +64,19 @@ namespace CEWSP_Backend.Backend
 
             Log.LogInfo("Successfully loaded global settings.");
 
-            // If no LY root, try deduce from registry
-            if (GlobalSettings.GetSetting(SettingsIdentificationNames.SetLYRoot).GetValueAsString() == ConstantDefinitions.CommonValueNone)
-            {
                 var engRoot = (string)Registry.GetValue("HKEY_CURRENT_USER\\SOFTWARE\\Amazon\\Lumberyard\\Settings", "ENG_RootPath", null);
 
-                if (engRoot == null)
-                {
-                    throw new NotImplementedException("Need to ask user to input root");
-                }
-                else
+                // Check if that directory actually exists since LY doesn't seem to adjust registry when installing a new minor version
+                if (engRoot != null && Directory.Exists(engRoot))
                 {
                     GlobalSettings.GetSetting(SettingsIdentificationNames.SetLYRoot).SetFromString(engRoot);
                     Log.LogInfo("Found LY installation at: " + engRoot);
                 }
-            }
-
+                else
+                {
+                    throw new NotImplementedException("Ask user to manually specify path");
+                }
+        
             LoadVisualSuffix();
 
             LoadProjects();
@@ -150,7 +147,7 @@ namespace CEWSP_Backend.Backend
             managerPath += "\\" + ConstantDefinitions.ProjectManagerRelativePath;
 
             Log.LogInfo("Launching Project Manager at: " + managerPath);
-            Utillities.StartProcessFromLYRootNoReturn(managerPath);
+            Utillities.StartProcessFromLYRootNonBlocking(managerPath);
         }
 
         public static void OpenSetupAssistant()
@@ -159,7 +156,14 @@ namespace CEWSP_Backend.Backend
             assistantPath += "\\" + ConstantDefinitions.LYSetupAssistantRelativePath;
 
             Log.LogInfo("Starting Setup assistant at: " + assistantPath);
-            Utillities.StartProcessFromLYRootNoReturn(assistantPath);
+            var proc = Utillities.StartProcessFromLYRootNonBlocking(assistantPath);
+
+            proc.EnableRaisingEvents = true;
+
+            proc.Exited += delegate
+            {
+                Log.ApplicationLog.TextBlock.Dispatcher.BeginInvoke(new ThreadStart(LoadVisualSuffix));
+            };
         }
 
 
@@ -303,6 +307,12 @@ namespace CEWSP_Backend.Backend
                 HumanReadableName = Properties.SettingsDesc.HumVisualSuffix,
                 Value = ConstantDefinitions.VisualSuffixVS120
             });
+
+            //GlobalSettings.AddSetting(new StringSetting()
+            //{
+            //    IdentificationName = SettingsIdentificationNames.SetBuildProfile,
+            //    Cage
+            //})
         }
 
         private static void LoadGameTemplates()

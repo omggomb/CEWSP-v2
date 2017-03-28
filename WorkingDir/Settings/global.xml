@@ -13,7 +13,7 @@
     description="The root directory in which LY was installed (contains 'dev')"
     category="Startup"
     typeAsString="string"
-    value="d:\Amazon\Lumberyard\1.8.0.0\dev" />
+    value="D:\Amazon\Lumberyard\1.8.0.1\dev" />
   <Setting
     identificationName="lastUsedEd64Commandline"
     humanReadableName="Last used editor 64bit commandline"

@@ -171,14 +171,15 @@ namespace CEWSP_Backend
             return tip;
         }
 
-        internal static void StartProcessFromLYRootNoReturn(string path, string arguments = "")
+        internal static Process StartProcessFromLYRootNonBlocking(string path, string arguments = "")
         {
             string currentDir = Directory.GetCurrentDirectory();
             string lyRoot = ApplicationBackend.GlobalSettings.GetSetting(SettingsIdentificationNames.SetLYRoot).GetValueAsString();
 
             Directory.SetCurrentDirectory(lyRoot);
-            Process.Start(path, arguments);
+            var proc = Process.Start(path, arguments);
             Directory.SetCurrentDirectory(currentDir);
+            return proc;
         }
 
         public static Popup CreateIssueToolTip(ReasonList reasons)
